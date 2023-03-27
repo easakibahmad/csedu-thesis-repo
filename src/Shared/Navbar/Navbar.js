@@ -49,8 +49,13 @@ const Navbar = () => {
           <Link to="/" className="normal-case text-xl">
             {/* <span className="text-yellow-500 font-bold pr-2">CSEDU</span>
             <span className="text-blue-600">Thesis Repository</span> */}
-            <span>
+            <span className="flex justify-start md:text-2xl  text-md font-medium items-center">
               <img src={cseduLogo} alt="cseduLogo" className="w-20 h-20" />
+
+              <p className="hidden md:block">
+                {" "}
+                <span>CSEDU</span> Thesis Repository
+              </p>
             </span>
           </Link>
         </div>
