@@ -1,6 +1,7 @@
 import React from "react";
 import { ImSearch } from "react-icons/im";
 import PublicationsItem from "./PublicationsItem/PublicationsItem";
+import PublicationsLeft from "./PublicationsLeft/PublicationsLeft";
 
 const Publications = () => {
   return (
@@ -16,10 +17,11 @@ const Publications = () => {
           <ImSearch></ImSearch>
         </span>
       </div>
-
-      <div className="grid grid-cols-4">
-        <div></div>
-        <div className="col-span-3">
+      <div className="grid grid-cols-6">
+        <div>
+          <PublicationsLeft></PublicationsLeft>
+        </div>
+        <div className="col-span-5">
           <PublicationsItem></PublicationsItem>
           <PublicationsItem></PublicationsItem>
           <PublicationsItem></PublicationsItem>

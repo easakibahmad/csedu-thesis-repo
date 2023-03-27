@@ -3,7 +3,10 @@ import React from "react";
 const PublicationsItem = () => {
   return (
     <div className="my-6">
-      <h1 className="font-medium text-xl" style={{ color: "#1a0dab" }}>
+      <h1
+        className="font-medium text-xl hover:underline hover:cursor-pointer"
+        style={{ color: "#1a0dab" }}
+      >
         On the ultimate convex hull algorithm in practice
       </h1>
       <span className="flex justify-start gap-3" style={{ color: "#006621" }}>
