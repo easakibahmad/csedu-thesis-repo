@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
+import cseduLogo from "../../Assets/Images/cseduLogo.png";
 
 const Navbar = () => {
   const menuItems = (
@@ -9,11 +10,15 @@ const Navbar = () => {
         <Link to="/">Home</Link>
       </li>
       <li>
+        <Link to="/publications">Publications</Link>
+      </li>
+      <li>
         <Link to="/submission">Submission</Link>
       </li>
       <li>
         <Link to="/about">About</Link>
       </li>
+
       <li>
         <Link to="/login">Login</Link>
       </li>
@@ -21,7 +26,7 @@ const Navbar = () => {
   );
   return (
     <div>
-      <div className="navbar  flex justify-between">
+      <div className="navbar flex justify-between shadow-xl">
         <div className="navbar-start">
           <div className="dropdown">
             <label
@@ -41,9 +46,12 @@ const Navbar = () => {
               {menuItems}
             </ul>
           </div>
-          <Link to="/" className="btn btn-ghost normal-case text-xl">
-            <span className="text-yellow-500 font-bold pr-2">CSEDU</span>
-            <span className="text-blue-600">Thesis Repository</span>
+          <Link to="/" className="normal-case text-xl">
+            {/* <span className="text-yellow-500 font-bold pr-2">CSEDU</span>
+            <span className="text-blue-600">Thesis Repository</span> */}
+            <span>
+              <img src={cseduLogo} alt="cseduLogo" className="w-20 h-20" />
+            </span>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
