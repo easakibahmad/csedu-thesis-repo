@@ -30,6 +30,20 @@ const Signup = () => {
       .then((res) => {
         console.log(res.user);
         toast("User created!!");
+        const userDataFromForm = {
+          email: data.email,
+          registrationNo: data.registration,
+          batch: data.batch,
+          userName: data.name,
+        };
+        console.log(userDataFromForm);
+        fetch("http://localhost:4000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userDataFromForm),
+        });
         const userInfo = {
           displayName: data.name,
         };
@@ -147,12 +161,12 @@ const Signup = () => {
               required: "password is required",
             })}
           />
-         { errors.password && (
+          {errors.password && (
             <p className="text-rose-500">{errors.password?.message}</p>
           )}
         </div>
         <input className="btn btn-accent rounded" value="Login" type="submit" />
-<>{signupError && <p className="text-rose-500">{signupError}</p>}</>
+        <>{signupError && <p className="text-rose-500">{signupError}</p>}</>
         <p className="mt-3">
           Already Has an Account? please{" "}
           <Link className="text-info" to="/login">
