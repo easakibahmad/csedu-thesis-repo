@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
 import cseduLogo from "../../Assets/Images/cseduLogo.png";
+import { AuthContext } from "../../context/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleSignOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((err) => console.log(err));
+  };
+
   const menuItems = (
     <React.Fragment>
       <li>
@@ -19,9 +27,15 @@ const Navbar = () => {
         <Link to="/about">About</Link>
       </li>
 
-      <li>
-        <Link to="/login">Login</Link>
-      </li>
+      {user?.uid ? (
+        <li onClick={handleSignOut} to="/">
+          <Link>Signout</Link>
+        </li>
+      ) : (
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+      )}
     </React.Fragment>
   );
   return (
