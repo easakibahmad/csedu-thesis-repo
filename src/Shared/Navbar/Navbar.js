@@ -20,17 +20,20 @@ const Navbar = () => {
       <li>
         <Link to="/publications">Publications</Link>
       </li>
-      <li>
-        <Link to="/submission">Submission</Link>
-      </li>
+
       <li>
         <Link to="/about">About</Link>
       </li>
 
       {user?.uid ? (
-        <li onClick={handleSignOut} to="/">
-          <Link>Signout</Link>
-        </li>
+        <>
+          <li>
+            <Link to="/submission">Submission</Link>
+          </li>
+          <li onClick={handleSignOut} to="/">
+            <Link>Signout</Link>
+          </li>
+        </>
       ) : (
         <li>
           <Link to="/login">Login</Link>
