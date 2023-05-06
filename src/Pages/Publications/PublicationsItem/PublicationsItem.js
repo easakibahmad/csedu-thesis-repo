@@ -6,7 +6,7 @@ const PublicationsItem = ({ option }) => {
     _id,
     projectTitle,
     supervisor,
-    abstract,
+    description,
     publicationYear,
     category,
     memberOne,
@@ -31,7 +31,7 @@ const PublicationsItem = ({ option }) => {
       </span>
       {/* <div className="flex gap-2" style={{ color: "#006621" }}></div> */}
 
-      <p className="text-sm md:w-2/3 w-3/4">{abstract}</p>
+      <p className="text-sm md:w-2/3 w-3/4">{description}</p>
     </div>
   );
 };

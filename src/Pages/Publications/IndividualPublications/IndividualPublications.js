@@ -7,7 +7,7 @@ import { useLoaderData } from "react-router-dom";
 
 const IndividualPublications = () => {
   const individualData = useLoaderData();
-  console.log(individualData[0].pdfFile);
+  console.log(individualData);
   const getFilePluginInstance = getFilePlugin();
   const { DownloadButton } = getFilePluginInstance;
 

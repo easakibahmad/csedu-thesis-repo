@@ -1,67 +1,65 @@
 import React from "react";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 
 const Submission = () => {
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
+  const [formData, setFormData] = useState({
+    memberOne: "",
+    memberTwo: "",
+    email: "",
+    description: "",
+    publicationYear: null,
+    supervisor: "",
+    projectTitle: "",
+    category: "",
+    pdf: null,
+    latex: null,
+  });
 
-  const navigate = useNavigate();
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-  const handleSignup = (data) => {
-    // console.log(data);
-    // const formData = new FormData();
-    // formData.append("email", data.email);
-    // formData.append("abstract", data.abstract);
-    // formData.append("category", data.category);
-    // formData.append("publicationYear", data.publicationYear);
-    // formData.append("supervisor", data.supervisor);
-    // formData.append("pdf", data.pdf);
-    // formData.append("latex", data.latex);
-    // formData.append("projectTitle", data.projectTitle);
-    // formData.append("memberOne", data.memberOne);
-    // formData.append("memberOne", data.memberTwo);
-    // formData.append("date", new Date());
+  const handleFileChange = (event) => {
+    const { name, files } = event.target;
+    if (name === "pdf") {
+      setFormData({ ...formData, pdf: files[0] });
+    } else if (name === "latex") {
+      setFormData({ ...formData, latex: files[0] });
+    }
+  };
 
-    const thesisInfo = {
-      email: data.email,
-      abstract: data.abstract,
-      category: data.category,
-      memberOne: data.memberOne,
-      memberTwo: data.memberTwo,
-      projectTitle: data.projectTitle,
-      publicationYear: data.publicationYear,
-      supervisor: data.supervisor,
-      pdfFile: data.pdf,
-      latexFile: data.latex,
-      date: new Date(),
-    };
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    const formDataToSubmit = new FormData();
+    formDataToSubmit.append("memberTwo", formData.memberTwo);
+    formDataToSubmit.append("email", formData.email);
+    formDataToSubmit.append("memberOne", formData.memberOne);
+    formDataToSubmit.append("pdf", formData.pdf);
+    formDataToSubmit.append("latex", formData.latex);
+    formDataToSubmit.append("category", formData.category);
+    formDataToSubmit.append("description", formData.description);
+    formDataToSubmit.append("publicationYear", formData.publicationYear);
+    formDataToSubmit.append("supervisor", formData.supervisor);
+    formDataToSubmit.append("projectTitle", formData.projectTitle);
+    formDataToSubmit.append("date", new Date());
+
     fetch("http://localhost:2000/thesisFiles", {
       method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(thesisInfo),
+      body: formDataToSubmit,
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         if (data.acknowledged) {
-          // setTreatment(null);
           toast.success("Booking successfully confirmed");
         } else {
           toast.error(data.message);
         }
       });
-
-    //
   };
-  // const [signupError, setSignupError] = useState("");
+
   return (
     <div>
       <div className="h-14 bg-black text-center md:text-4xl text-2xl font-medium grid items-center text-white">
@@ -71,30 +69,28 @@ const Submission = () => {
       <div className="hero pt-6 mb-12">
         <div className="hero-content flex-row shadow-xl rounded-xl">
           <div className="card flex-shrink-0 w-full   bg-base-100">
-            <form onSubmit={handleSubmit(handleSignup)} className="card-body">
+            <form
+              onSubmit={handleSubmitForm}
+              encType="multipart/form-data"
+              className="card-body"
+            >
               <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
                 <div>
                   <div className="form-control">
-                    <label className="label">
+                    <label htmlFor="memberOne" className="label">
                       <span className="label-text">Member 1:</span>
                     </label>
                     <input
                       name="memberOne"
                       type="text"
                       placeholder="member 1"
+                      value={formData.memberOne}
+                      onChange={handleInputChange}
                       className="input input-bordered"
-                      {...register("memberOne", {
-                        required: "member 1 is required",
-                      })}
                     />
-                    {errors.memberOne && (
-                      <p className="text-rose-500">
-                        {errors.memberOne?.message}
-                      </p>
-                    )}
                   </div>
                   <div className="form-control">
-                    <label className="label">
+                    <label htmlFor="memberTwo" className="label">
                       <span className="label-text">Member 2:</span>
                     </label>
                     <input
@@ -102,13 +98,12 @@ const Submission = () => {
                       type="text"
                       placeholder="member 2"
                       className="input input-bordered"
-                      {...register("memberTwo", {
-                        required: "member 2 is required",
-                      })}
+                      value={formData.memberTwo}
+                      onChange={handleInputChange}
                     />
                   </div>
                   <div className="form-control">
-                    <label className="label">
+                    <label htmlFor="email" className="label">
                       <span className="label-text">Email:</span>
                     </label>
                     <input
@@ -116,43 +111,34 @@ const Submission = () => {
                       type="text"
                       placeholder="email"
                       className="input input-bordered"
-                      {...register("email", { required: "email is required" })}
+                      value={formData.email}
+                      onChange={handleInputChange}
                     />
-                    {errors.email && (
-                      <p className="text-rose-500">{errors.email?.message}</p>
-                    )}
                   </div>
                   <div className="form-control">
-                    <label className="label">
+                    <label htmlFor="supervisor" className="label">
                       <span className="label-text">Supervisor:</span>
                     </label>
                     <select
                       name="supervisor"
                       className="select select-bordered w-full"
-                      {...register("supervisor", {
-                        required: "supervisor is required",
-                      })}
+                      value={formData.supervisor}
+                      onChange={handleInputChange}
                     >
                       <option value="Dr XYZ">Dr XYZ</option>
                       <option value="Dr ABC">Dr ABC</option>
                       <option value="Dr DEF">Dr DEF</option>
                     </select>
-                    {errors.supervisor && (
-                      <p className="text-rose-500">
-                        {errors.supervisor?.message}
-                      </p>
-                    )}
                   </div>
                   <div className="form-control">
-                    <label className="label">
+                    <label htmlFor="category" className="label">
                       <span className="label-text">Category:</span>
                     </label>
                     <select
                       name="category"
                       className="select select-bordered w-full "
-                      {...register("category", {
-                        required: "category is required",
-                      })}
+                      value={formData.category}
+                      onChange={handleInputChange}
                     >
                       <option value="Data Structure">Data Structure</option>
                       <option value="Database">Database</option>
@@ -160,37 +146,26 @@ const Submission = () => {
                         Programming Language
                       </option>
                     </select>
-                    {errors.category && (
-                      <p className="text-rose-500">
-                        {errors.category?.message}
-                      </p>
-                    )}
                   </div>
                   <div className="form-control">
-                    <label className="label">
+                    <label htmlFor="publicationYear" className="label">
                       <span className="label-text">Publication year:</span>
                     </label>
                     <select
                       name="publicationYear"
                       className="select select-bordered w-full "
-                      {...register("publicationYear", {
-                        required: "publication year is required",
-                      })}
+                      value={formData.publicationYear}
+                      onChange={handleInputChange}
                     >
                       <option value="2022">2022</option>
                       <option value="2021">2021</option>
                       <option value="2020">2020</option>
                     </select>
-                    {errors.publicationYear && (
-                      <p className="text-rose-500">
-                        {errors.publicationYear?.message}
-                      </p>
-                    )}
                   </div>
                 </div>
                 <div>
                   <div className="form-control">
-                    <label className="label">
+                    <label htmlFor="projectTitle" className="label">
                       <span className="label-text">Project title:</span>
                     </label>
                     <input
@@ -198,64 +173,44 @@ const Submission = () => {
                       type="text"
                       placeholder="project title"
                       className="input input-bordered"
-                      {...register("projectTitle", {
-                        required: "project title is required",
-                      })}
+                      value={formData.projectTitle}
+                      onChange={handleInputChange}
                     />
-                    {errors.projectTitle && (
-                      <p className="text-rose-500">
-                        {errors.projectTitle?.message}
-                      </p>
-                    )}
                   </div>
                   <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Abstract:</span>
+                    <label htmlFor="abstract" className="label">
+                      <span className="label-text">Description:</span>
                     </label>
                     <textarea
-                      name="abstract"
+                      name="description"
                       placeholder="short description of your project"
                       className="textarea textarea-bordered textarea-md w-full"
-                      {...register("abstract", {
-                        required: "abstract is required",
-                      })}
+                      value={formData.description}
+                      onChange={handleInputChange}
                     ></textarea>
-                    {errors.abstract && (
-                      <p className="text-rose-500">
-                        {errors.abstract?.message}
-                      </p>
-                    )}
                   </div>
 
                   <div className="form-control">
-                    <label className="label">
+                    <label htmlFor="pdf" className="label">
                       <span className="label-text">File (.pdf):</span>
                     </label>
                     <input
                       name="pdf"
                       type="file"
                       className="file-input file-input-bordered file-input-accent w-full max-w-xs"
-                      {...register("pdf", { required: "pdf file is required" })}
+                      onChange={handleFileChange}
                     />
-                    {errors.pdf && (
-                      <p className="text-rose-500">{errors.pdf?.message}</p>
-                    )}
                   </div>
                   <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">File (.latex):</span>
+                    <label htmlFor="latex" className="label">
+                      <span className="label-text">File (.tex):</span>
                     </label>
                     <input
                       name="latex"
                       type="file"
                       className="file-input file-input-bordered file-input-accent w-full max-w-xs"
-                      {...register("latex", {
-                        required: "latex file is required",
-                      })}
+                      onChange={handleFileChange}
                     />
-                    {errors.latex && (
-                      <p className="text-rose-500">{errors.latex?.message}</p>
-                    )}
                   </div>
                 </div>
               </div>
