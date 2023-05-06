@@ -29,7 +29,6 @@ const PublicationsItem = ({ option }) => {
         <p className="underline">{memberTwo}</p>|<p> {category}</p>
         <p>{publicationYear}</p>
       </span>
-      {/* <div className="flex gap-2" style={{ color: "#006621" }}></div> */}
 
       <p className="text-sm md:w-2/3 w-3/4">{description}</p>
     </div>

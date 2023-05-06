@@ -30,7 +30,7 @@ const Submission = () => {
     }
   };
 
-  const handleSubmitForm = (e) => {
+  const handleSubmitForm = async (e) => {
     e.preventDefault();
     const formDataToSubmit = new FormData();
     formDataToSubmit.append("memberTwo", formData.memberTwo);
@@ -45,19 +45,16 @@ const Submission = () => {
     formDataToSubmit.append("projectTitle", formData.projectTitle);
     formDataToSubmit.append("date", new Date());
 
-    fetch("http://localhost:2000/thesisFiles", {
-      method: "POST",
-      body: formDataToSubmit,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.acknowledged) {
-          toast.success("Booking successfully confirmed");
-        } else {
-          toast.error(data.message);
-        }
+    try {
+      const response = await fetch("http://localhost:2000/thesisFiles", {
+        method: "POST",
+        body: formDataToSubmit,
       });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
