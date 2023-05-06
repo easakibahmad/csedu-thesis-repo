@@ -6,6 +6,7 @@ import Login from "../../Pages/Login/Login";
 import Signup from "../../Signup/Signup";
 import Submission from "../../Pages/Submission/Submission";
 import Publications from "../../Pages/Publications/Publications";
+import IndividualPublications from "../../Pages/Publications/IndividualPublications/IndividualPublications";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,12 @@ const router = createBrowserRouter([
       {
         path: "/publications",
         element: <Publications></Publications>,
+      },
+      {
+        path: "/publications/:id",
+        element: <IndividualPublications></IndividualPublications>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:2000/thesisFiles/${params.id}`),
       },
     ],
   },

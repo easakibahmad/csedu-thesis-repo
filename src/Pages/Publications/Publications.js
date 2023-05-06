@@ -1,9 +1,23 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { ImSearch } from "react-icons/im";
+import Loading from "../../Shared/Loading/Loading";
 import PublicationsItem from "./PublicationsItem/PublicationsItem";
 import PublicationsLeft from "./PublicationsLeft/PublicationsLeft";
 
 const Publications = () => {
+  const { data: thesisFilesData = [], isLoading } = useQuery({
+    // added date as query key
+    queryKey: ["thesisFiles"],
+    queryFn: async () => {
+      const res = await fetch(`http://localhost:2000/thesisFiles`);
+      const data = await res.json();
+      return data;
+    },
+  });
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
   return (
     <div>
       <div className="flex justify-center md:w-1/2 mx-auto my-6 items-center">
@@ -22,10 +36,12 @@ const Publications = () => {
           <PublicationsLeft></PublicationsLeft>
         </div>
         <div className="col-span-5">
-          <PublicationsItem></PublicationsItem>
-          <PublicationsItem></PublicationsItem>
-          <PublicationsItem></PublicationsItem>
-          <PublicationsItem></PublicationsItem>
+          {thesisFilesData.map((option) => (
+            <PublicationsItem
+              key={option._id}
+              option={option}
+            ></PublicationsItem>
+          ))}
         </div>
       </div>
     </div>

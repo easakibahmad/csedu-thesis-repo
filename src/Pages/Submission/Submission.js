@@ -15,6 +15,18 @@ const Submission = () => {
 
   const handleSignup = (data) => {
     // console.log(data);
+    // const formData = new FormData();
+    // formData.append("email", data.email);
+    // formData.append("abstract", data.abstract);
+    // formData.append("category", data.category);
+    // formData.append("publicationYear", data.publicationYear);
+    // formData.append("supervisor", data.supervisor);
+    // formData.append("pdf", data.pdf);
+    // formData.append("latex", data.latex);
+    // formData.append("projectTitle", data.projectTitle);
+    // formData.append("memberOne", data.memberOne);
+    // formData.append("memberOne", data.memberTwo);
+    // formData.append("date", new Date());
 
     const thesisInfo = {
       email: data.email,
@@ -29,7 +41,7 @@ const Submission = () => {
       latexFile: data.latex,
       date: new Date(),
     };
-    fetch("http://localhost:4000/thesisFiles", {
+    fetch("http://localhost:2000/thesisFiles", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -38,12 +50,16 @@ const Submission = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // toast.success("submission successfully done!!");
-        navigate("/");
         console.log(data);
+        if (data.acknowledged) {
+          // setTreatment(null);
+          toast.success("Booking successfully confirmed");
+        } else {
+          toast.error(data.message);
+        }
       });
 
-    // 
+    //
   };
   // const [signupError, setSignupError] = useState("");
   return (
@@ -117,9 +133,9 @@ const Submission = () => {
                         required: "supervisor is required",
                       })}
                     >
-                      <option value="option one">option one</option>
-                      <option value="option one">option two</option>
-                      <option value="option one">option three</option>
+                      <option value="Dr XYZ">Dr XYZ</option>
+                      <option value="Dr ABC">Dr ABC</option>
+                      <option value="Dr DEF">Dr DEF</option>
                     </select>
                     {errors.supervisor && (
                       <p className="text-rose-500">
@@ -138,9 +154,11 @@ const Submission = () => {
                         required: "category is required",
                       })}
                     >
-                      <option value="option one">option one</option>
-                      <option value="option one">option two</option>
-                      <option value="option one">option three</option>
+                      <option value="Data Structure">Data Structure</option>
+                      <option value="Database">Database</option>
+                      <option value="Programming Language">
+                        Programming Language
+                      </option>
                     </select>
                     {errors.category && (
                       <p className="text-rose-500">
@@ -178,7 +196,7 @@ const Submission = () => {
                     <input
                       name="projectTitle"
                       type="text"
-                      placeholder="member 1"
+                      placeholder="project title"
                       className="input input-bordered"
                       {...register("projectTitle", {
                         required: "project title is required",
@@ -196,7 +214,7 @@ const Submission = () => {
                     </label>
                     <textarea
                       name="abstract"
-                      placeholder="Bio"
+                      placeholder="short description of your project"
                       className="textarea textarea-bordered textarea-md w-full"
                       {...register("abstract", {
                         required: "abstract is required",
