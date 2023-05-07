@@ -12,6 +12,7 @@ const PublicationsItem = ({ option }) => {
     memberOne,
     memberTwo,
   } = option;
+
   return (
     <div className="my-6 md:w-3/4">
       <Link

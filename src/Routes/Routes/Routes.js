@@ -41,7 +41,7 @@ const router = createBrowserRouter([
         path: "/publications/:id",
         element: <IndividualPublications></IndividualPublications>,
         loader: ({ params }) =>
-          fetch(`http://localhost:2000/thesisFiles/${params.id}`),
+          fetch(`http://localhost:4000/thesisFiles/${params.id}`),
       },
     ],
   },

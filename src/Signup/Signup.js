@@ -37,7 +37,7 @@ const Signup = () => {
           userName: data.name,
         };
         console.log(userDataFromForm);
-        fetch("http://localhost:2000/users", {
+        fetch("http://localhost:4000/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

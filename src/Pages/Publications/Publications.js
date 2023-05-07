@@ -10,7 +10,7 @@ const Publications = () => {
     // added date as query key
     queryKey: ["thesisFiles"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:2000/thesisFiles`);
+      const res = await fetch(`http://localhost:4000/thesisFiles`);
       const data = await res.json();
       return data;
     },

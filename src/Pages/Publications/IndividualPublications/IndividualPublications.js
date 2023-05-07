@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Viewer, Worker } from "@react-pdf-viewer/core";
 import { getFilePlugin } from "@react-pdf-viewer/get-file";
 import "@react-pdf-viewer/core/lib/styles/index.css";
-import book from "../../../Assets/Pdfs/AC.pdf";
 import { useLoaderData } from "react-router-dom";
 
 const IndividualPublications = () => {
@@ -17,7 +16,20 @@ const IndividualPublications = () => {
     publicationYear,
     date,
     category,
+    _id,
   } = individualData[0];
+
+  const [thesisPdf, setThesisPdf] = useState("");
+  useEffect(() => {
+    fetch(`http://localhost:4000/oneThesisFile/${_id}`)
+      .then((res) => res.blob())
+      .then((blob) => {
+        const url = URL.createObjectURL(blob);
+        setThesisPdf(url);
+      });
+  }, [_id]);
+  console.log(thesisPdf);
+
   const getFilePluginInstance = getFilePlugin();
   const { DownloadButton } = getFilePluginInstance;
 
@@ -81,7 +93,9 @@ const IndividualPublications = () => {
                 overflow: "hidden",
               }}
             >
-              <Viewer fileUrl={book} plugins={[getFilePluginInstance]} />
+              {thesisPdf && (
+                <Viewer fileUrl={thesisPdf} plugins={[getFilePluginInstance]} />
+              )}
             </div>
           </div>
         </div>
