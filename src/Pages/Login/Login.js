@@ -11,7 +11,7 @@ const Login = () => {
 
   const from = location.state?.from?.pathname || "/";
 
-  const { signIn, signInWithGooglePopUp } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
   const {
     register,
     formState: { errors },

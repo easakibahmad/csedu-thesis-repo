@@ -1,20 +1,33 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import Loading from "../../../Shared/Loading/Loading";
 
 const PublicationsLeft = () => {
+  const { data: thesisFilesData = [], isLoading } = useQuery({
+    // added date as query key
+    queryKey: ["publicationYear"],
+    queryFn: async () => {
+      const res = await fetch(`http://localhost:2000/publicationYear`);
+      const data = await res.json();
+      return data;
+    },
+  });
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
   return (
     <div className="w-1/2 mx-auto mt-6">
-      <p className="text-red-500 font-medium">Sort by Year</p>
-      <p className="hover:underline hover:cursor-pointer">2022</p>
-      <p className="hover:underline hover:cursor-pointer">2021</p>
-      <p className="hover:underline hover:cursor-pointer">2020</p>
-      <p className="hover:underline hover:cursor-pointer">2019</p>
-      <br />
-      <br />
-      <p className="text-red-500 font-medium">Sort by Batch</p>
-      <p className="hover:underline hover:cursor-pointer">24th</p>
-      <p className="hover:underline hover:cursor-pointer">23th</p>
-      <p className="hover:underline hover:cursor-pointer">22th</p>
-      <p className="hover:underline hover:cursor-pointer">21th</p>
+      <p className="text-red-500 font-medium  hover:underline">Sort by Year</p>
+      <div className="grid grid-cols-1 mt-3 gap-4">
+        {thesisFilesData.map((item) => (
+          <p
+            key={item._id}
+            className="hover:text-blue-500 hover:underline hover:cursor-pointer"
+          >
+            {item.publicationYear}
+          </p>
+        ))}
+      </div>
     </div>
   );
 };

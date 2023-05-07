@@ -1,4 +1,3 @@
-import React from "react";
 import { ImSearch } from "react-icons/im";
 
 const SearchBanner = () => {
@@ -7,6 +6,7 @@ const SearchBanner = () => {
       <h1 className="text-2xl font-bold md:text-4xl text-center">
         CSEDU Thesis Repository
       </h1>
+
       <div className="flex justify-center my-6 items-center">
         <input
           type="text"
