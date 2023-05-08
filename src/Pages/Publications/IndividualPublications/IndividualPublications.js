@@ -21,7 +21,7 @@ const IndividualPublications = () => {
 
   const [thesisPdf, setThesisPdf] = useState("");
   useEffect(() => {
-    fetch(`http://localhost:4000/oneThesisFile/${_id}`)
+    fetch(`http://localhost:2000/oneThesisFile/${_id}`)
       .then((res) => res.blob())
       .then((blob) => {
         const url = URL.createObjectURL(blob);

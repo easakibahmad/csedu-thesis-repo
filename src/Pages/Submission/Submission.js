@@ -46,7 +46,7 @@ const Submission = () => {
     formDataToSubmit.append("date", new Date());
 
     try {
-      const response = await fetch("http://localhost:4000/thesisFiles", {
+      const response = await fetch("http://localhost:2000/thesisFiles", {
         method: "POST",
         body: formDataToSubmit,
       });
