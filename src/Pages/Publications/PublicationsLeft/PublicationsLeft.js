@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import Loading from "../../../Shared/Loading/Loading";
+import { Link } from "react-router-dom";
 
 const PublicationsLeft = () => {
   const { data: thesisFilesData = [], isLoading } = useQuery({
@@ -20,12 +21,13 @@ const PublicationsLeft = () => {
       <p className="text-red-500 font-medium  hover:underline">Sort by Year</p>
       <div className="grid grid-cols-1 mt-3 gap-4">
         {thesisFilesData.map((item) => (
-          <p
+          <Link
+            to={`/pages/${item.publicationYear}`}
             key={item._id}
             className="hover:text-blue-500 hover:underline hover:cursor-pointer"
           >
             {item.publicationYear}
-          </p>
+          </Link>
         ))}
       </div>
     </div>
