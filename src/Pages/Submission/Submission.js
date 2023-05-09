@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
-import { toast } from "react-hot-toast";
+import { AuthContext } from "../../context/AuthProvider";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Submission = () => {
+  const { user } = useContext(AuthContext);
+  const { displayName, email } = user;
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formTitleSubmitted, setFormTitleSubmitted] = useState(false);
+  const [formYearSubmitted, setFormYearSubmitted] = useState(false);
+  const [formCategorySubmitted, setFormCategorySubmitted] = useState(false);
+  const [supervisorSubmitted, setSupervisorSubmitted] = useState(false);
+  const [descriptionSubmitted, setDescriptionSubmitted] = useState(false);
+
   const [formData, setFormData] = useState({
-    memberOne: "",
+    memberOne: displayName,
     memberTwo: "",
-    email: "",
+    email: email,
     description: "",
-    publicationYear: null,
+    publicationYear: "",
     supervisor: "",
     projectTitle: "",
     category: "",
@@ -45,6 +56,31 @@ const Submission = () => {
     formDataToSubmit.append("projectTitle", formData.projectTitle);
     formDataToSubmit.append("date", new Date());
 
+    if (formData.memberTwo.trim() === "") {
+      setFormSubmitted(true);
+      return;
+    }
+    if (formData.supervisor.trim() === "") {
+      setSupervisorSubmitted(true);
+      return;
+    }
+    if (formData.category.trim() === "") {
+      setFormCategorySubmitted(true);
+      return;
+    }
+    if (formData.publicationYear.trim() === "") {
+      setFormYearSubmitted(true);
+      return;
+    }
+    if (formData.projectTitle.trim() === "") {
+      setFormTitleSubmitted(true);
+      return;
+    }
+    if (formData.description.trim() === "") {
+      setDescriptionSubmitted(true);
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:2000/thesisFiles", {
         method: "POST",
@@ -52,6 +88,7 @@ const Submission = () => {
       });
       const data = await response.json();
       console.log(data);
+      toast.success("Data posted successfully!");
     } catch (error) {
       console.error(error);
     }
@@ -94,10 +131,19 @@ const Submission = () => {
                       name="memberTwo"
                       type="text"
                       placeholder="member 2"
-                      className="input input-bordered"
+                      className={`input input-bordered ${
+                        formSubmitted && formData.memberTwo.trim() === ""
+                          ? "input-error"
+                          : ""
+                      }`}
                       value={formData.memberTwo}
                       onChange={handleInputChange}
                     />
+                    {formSubmitted && formData.memberTwo.trim() === "" && (
+                      <div className="error-message">
+                        This field is required.
+                      </div>
+                    )}
                   </div>
                   <div className="form-control">
                     <label htmlFor="email" className="label">
@@ -118,14 +164,25 @@ const Submission = () => {
                     </label>
                     <select
                       name="supervisor"
-                      className="select select-bordered w-full"
+                      className={`select select-bordered w-full ${
+                        supervisorSubmitted && formData.supervisor.trim() === ""
+                          ? "select-error"
+                          : ""
+                      }`}
                       value={formData.supervisor}
                       onChange={handleInputChange}
+                      supervisorSubmitted
                     >
                       <option value="Dr XYZ">Dr XYZ</option>
                       <option value="Dr ABC">Dr ABC</option>
                       <option value="Dr DEF">Dr DEF</option>
                     </select>
+                    {supervisorSubmitted &&
+                      formData.supervisor.trim() === "" && (
+                        <div className="error-message text-red-600">
+                          This field is required.
+                        </div>
+                      )}
                   </div>
                   <div className="form-control">
                     <label htmlFor="category" className="label">
@@ -133,7 +190,11 @@ const Submission = () => {
                     </label>
                     <select
                       name="category"
-                      className="select select-bordered w-full "
+                      className={`select select-bordered w-full ${
+                        formCategorySubmitted && formData.category.trim() === ""
+                          ? "select-error"
+                          : ""
+                      }`}
                       value={formData.category}
                       onChange={handleInputChange}
                     >
@@ -143,6 +204,12 @@ const Submission = () => {
                         Programming Language
                       </option>
                     </select>
+                    {formCategorySubmitted &&
+                      formData.category.trim() === "" && (
+                        <div className="error-message text-red-600">
+                          This field is required.
+                        </div>
+                      )}
                   </div>
                   <div className="form-control">
                     <label htmlFor="publicationYear" className="label">
@@ -150,7 +217,12 @@ const Submission = () => {
                     </label>
                     <select
                       name="publicationYear"
-                      className="select select-bordered w-full "
+                      className={`select select-bordered w-full ${
+                        formYearSubmitted &&
+                        formData.publicationYear.trim() === ""
+                          ? "select-error"
+                          : ""
+                      }`}
                       value={formData.publicationYear}
                       onChange={handleInputChange}
                     >
@@ -158,6 +230,12 @@ const Submission = () => {
                       <option value="2021">2021</option>
                       <option value="2020">2020</option>
                     </select>
+                    {formYearSubmitted &&
+                      formData.publicationYear.trim() === "" && (
+                        <div className="error-message text-red-600">
+                          This field is required.
+                        </div>
+                      )}
                   </div>
                 </div>
                 <div>
@@ -169,10 +247,22 @@ const Submission = () => {
                       name="projectTitle"
                       type="text"
                       placeholder="project title"
-                      className="input input-bordered"
+                      // className="input input-bordered"
+                      className={`input input-bordered ${
+                        formTitleSubmitted &&
+                        formData.projectTitle.trim() === ""
+                          ? "input-error"
+                          : ""
+                      }`}
                       value={formData.projectTitle}
                       onChange={handleInputChange}
                     />
+                    {formTitleSubmitted &&
+                      formData.projectTitle.trim() === "" && (
+                        <div className="error-message">
+                          This field is required.
+                        </div>
+                      )}
                   </div>
                   <div className="form-control">
                     <label htmlFor="abstract" className="label">
@@ -181,10 +271,21 @@ const Submission = () => {
                     <textarea
                       name="description"
                       placeholder="short description of your project"
-                      className="textarea textarea-bordered textarea-md w-full"
+                      className={`textarea textarea-bordered textarea-md w-full ${
+                        descriptionSubmitted &&
+                        formData.description.trim() === ""
+                          ? "textarea-error"
+                          : ""
+                      }`}
                       value={formData.description}
                       onChange={handleInputChange}
                     ></textarea>
+                    {descriptionSubmitted &&
+                      formData.description.trim() === "" && (
+                        <div className="error-message">
+                          This field is required.
+                        </div>
+                      )}
                   </div>
 
                   <div className="form-control">
@@ -194,7 +295,7 @@ const Submission = () => {
                     <input
                       name="pdf"
                       type="file"
-                      className="file-input file-input-bordered file-input-accent w-full max-w-xs"
+                      className={`file-input file-input-bordered file-input-accent w-full max-w-xs `}
                       onChange={handleFileChange}
                     />
                   </div>
@@ -205,7 +306,7 @@ const Submission = () => {
                     <input
                       name="latex"
                       type="file"
-                      className="file-input file-input-bordered file-input-accent w-full max-w-xs"
+                      className={`file-input file-input-bordered file-input-accent w-full max-w-xs `}
                       onChange={handleFileChange}
                     />
                   </div>
