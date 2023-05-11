@@ -25,7 +25,6 @@ const Submission = () => {
     projectTitle: "",
     category: "",
     pdf: null,
-    latex: null,
   });
 
   const handleInputChange = (event) => {
@@ -37,8 +36,6 @@ const Submission = () => {
     const { name, files } = event.target;
     if (name === "pdf") {
       setFormData({ ...formData, pdf: files[0] });
-    } else if (name === "latex") {
-      setFormData({ ...formData, latex: files[0] });
     }
   };
 
@@ -49,7 +46,6 @@ const Submission = () => {
     formDataToSubmit.append("email", formData.email);
     formDataToSubmit.append("memberOne", formData.memberOne);
     formDataToSubmit.append("pdf", formData.pdf);
-    formDataToSubmit.append("latex", formData.latex);
     formDataToSubmit.append("category", formData.category);
     formDataToSubmit.append("description", formData.description);
     formDataToSubmit.append("publicationYear", formData.publicationYear);
@@ -82,7 +78,7 @@ const Submission = () => {
       setDescriptionSubmitted(true);
       return;
     }
-    navigate("/");
+    navigate("/success");
 
     try {
       const response = await fetch("http://localhost:2000/thesisFiles", {
@@ -197,6 +193,7 @@ const Submission = () => {
                           : ""
                       }`}
                       value={formData.category}
+                      defaultValue="Data Structure"
                       onChange={handleInputChange}
                     >
                       <option value="Data Structure">Data Structure</option>
@@ -295,17 +292,6 @@ const Submission = () => {
                     </label>
                     <input
                       name="pdf"
-                      type="file"
-                      className={`file-input file-input-bordered file-input-accent w-full max-w-xs `}
-                      onChange={handleFileChange}
-                    />
-                  </div>
-                  <div className="form-control">
-                    <label htmlFor="latex" className="label">
-                      <span className="label-text">File (.tex):</span>
-                    </label>
-                    <input
-                      name="latex"
                       type="file"
                       className={`file-input file-input-bordered file-input-accent w-full max-w-xs `}
                       onChange={handleFileChange}

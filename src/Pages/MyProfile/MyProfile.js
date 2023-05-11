@@ -1,12 +1,10 @@
 import React from "react";
 import MySubmissions from "./MySubmissions/MySubmissions";
-import Top from "./Top/Top";
 import UserPicture from "./UserPicture/UserPicture";
 
 const MyProfile = () => {
   return (
-    <div>
-      <Top></Top>
+    <div className="pb-12">
       <UserPicture></UserPicture>
       <MySubmissions></MySubmissions>
     </div>

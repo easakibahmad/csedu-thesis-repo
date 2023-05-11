@@ -5,6 +5,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 const EachSubmissions = ({ item }) => {
   const { projectTitle, date, _id } = item;
   console.log(item);
+
   return (
     <div className="grid grid-cols-5 shadow-md p-4">
       <div className=" md:w-3/4 col-span-4">

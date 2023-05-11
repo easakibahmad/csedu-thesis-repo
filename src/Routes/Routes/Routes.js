@@ -47,6 +47,10 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:2000/thesisFiles/${params.id}`),
       },
+      {
+        path: "/myProfile",
+        element: <MyProfile></MyProfile>,
+      },
     ],
   },
   {
@@ -64,10 +68,6 @@ const router = createBrowserRouter([
   {
     path: "/success",
     element: <Success></Success>,
-  },
-  {
-    path: "/myProfile",
-    element: <MyProfile></MyProfile>,
   },
 ]);
 
