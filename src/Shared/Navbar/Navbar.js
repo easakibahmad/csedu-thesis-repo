@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
 import cseduLogo from "../../Assets/Images/cseduLogo.png";
 import { AuthContext } from "../../context/AuthProvider";
+import { ImProfile } from "react-icons/im";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -32,6 +33,11 @@ const Navbar = () => {
           </li>
           <li onClick={handleSignOut} to="/">
             <Link>Signout</Link>
+          </li>
+          <li>
+            <Link className="text-xl font-extrabold" to="/myProfile">
+              <ImProfile></ImProfile>
+            </Link>
           </li>
         </>
       ) : (
