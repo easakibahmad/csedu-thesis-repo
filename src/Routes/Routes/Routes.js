@@ -9,6 +9,8 @@ import Publications from "../../Pages/Publications/Publications";
 import IndividualPublications from "../../Pages/Publications/IndividualPublications/IndividualPublications";
 import PagesOutlet from "../../Layout/PagesOutlet";
 import SortedPage from "../../Pages/SortedPage/SortedPage";
+import Success from "../../Pages/Success/Success";
+import MyProfile from "../../Pages/MyProfile/MyProfile";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +60,14 @@ const router = createBrowserRouter([
           fetch(`http://localhost:2000/pages/${params.year}`),
       },
     ],
+  },
+  {
+    path: "/success",
+    element: <Success></Success>,
+  },
+  {
+    path: "/myProfile",
+    element: <MyProfile></MyProfile>,
   },
 ]);
 

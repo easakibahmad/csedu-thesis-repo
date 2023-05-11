@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import { useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const Submission = () => {
   const { user } = useContext(AuthContext);
@@ -11,8 +10,10 @@ const Submission = () => {
   const [formTitleSubmitted, setFormTitleSubmitted] = useState(false);
   const [formYearSubmitted, setFormYearSubmitted] = useState(false);
   const [formCategorySubmitted, setFormCategorySubmitted] = useState(false);
-  const [supervisorSubmitted, setSupervisorSubmitted] = useState(false);
+  const [supervise, setSupervise] = useState(false);
   const [descriptionSubmitted, setDescriptionSubmitted] = useState(false);
+
+  const navigate = useNavigate(); // instantiate useNavigate hook
 
   const [formData, setFormData] = useState({
     memberOne: displayName,
@@ -61,7 +62,7 @@ const Submission = () => {
       return;
     }
     if (formData.supervisor.trim() === "") {
-      setSupervisorSubmitted(true);
+      setSupervise(true);
       return;
     }
     if (formData.category.trim() === "") {
@@ -76,10 +77,12 @@ const Submission = () => {
       setFormTitleSubmitted(true);
       return;
     }
+
     if (formData.description.trim() === "") {
       setDescriptionSubmitted(true);
       return;
     }
+    navigate("/");
 
     try {
       const response = await fetch("http://localhost:2000/thesisFiles", {
@@ -88,7 +91,6 @@ const Submission = () => {
       });
       const data = await response.json();
       console.log(data);
-      toast.success("Data posted successfully!");
     } catch (error) {
       console.error(error);
     }
@@ -165,7 +167,7 @@ const Submission = () => {
                     <select
                       name="supervisor"
                       className={`select select-bordered w-full ${
-                        supervisorSubmitted && formData.supervisor.trim() === ""
+                        supervise && formData.supervisor.trim() === ""
                           ? "select-error"
                           : ""
                       }`}
@@ -177,12 +179,11 @@ const Submission = () => {
                       <option value="Dr ABC">Dr ABC</option>
                       <option value="Dr DEF">Dr DEF</option>
                     </select>
-                    {supervisorSubmitted &&
-                      formData.supervisor.trim() === "" && (
-                        <div className="error-message text-red-600">
-                          This field is required.
-                        </div>
-                      )}
+                    {supervise && formData.supervisor.trim() === "" && (
+                      <div className="error-message text-red-600">
+                        This field is required.
+                      </div>
+                    )}
                   </div>
                   <div className="form-control">
                     <label htmlFor="category" className="label">
