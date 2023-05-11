@@ -12,7 +12,7 @@ const MySubmissions = () => {
     queryKey: [`submission/${user?.email}`],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:2000/submission/${user?.email}`
+        `https://csedut-hesis-repository-server.vercel.app/submission/${user?.email}`
       );
       const data = await res.json();
       return data;

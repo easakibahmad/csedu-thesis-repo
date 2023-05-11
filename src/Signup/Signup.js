@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
@@ -13,8 +13,7 @@ const Signup = () => {
     handleSubmit,
   } = useForm();
 
-  const { createUser, updateUser, signInWithGooglePopUp } =
-    useContext(AuthContext);
+  const { createUser, updateUser } = useContext(AuthContext);
 
   const [signupError, setSignupError] = useState("");
 
@@ -37,7 +36,7 @@ const Signup = () => {
           userName: data.name,
         };
         console.log(userDataFromForm);
-        fetch("http://localhost:2000/users", {
+        fetch("https://csedut-hesis-repository-server.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

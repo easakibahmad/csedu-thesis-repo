@@ -81,10 +81,13 @@ const Submission = () => {
     navigate("/success");
 
     try {
-      const response = await fetch("http://localhost:2000/thesisFiles", {
-        method: "POST",
-        body: formDataToSubmit,
-      });
+      const response = await fetch(
+        "https://csedut-hesis-repository-server.vercel.app/thesisFiles",
+        {
+          method: "POST",
+          body: formDataToSubmit,
+        }
+      );
       const data = await response.json();
       console.log(data);
     } catch (error) {

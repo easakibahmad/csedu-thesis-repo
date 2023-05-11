@@ -8,7 +8,9 @@ const PublicationsLeft = () => {
     // added date as query key
     queryKey: ["publicationYear"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:2000/publicationYear`);
+      const res = await fetch(
+        `https://csedut-hesis-repository-server.vercel.app/publicationYear`
+      );
       const data = await res.json();
       return data;
     },

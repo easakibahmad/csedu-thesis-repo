@@ -10,7 +10,9 @@ const Publications = () => {
     // added date as query key
     queryKey: ["thesisFiles"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:2000/thesisFiles`);
+      const res = await fetch(
+        `https://csedut-hesis-repository-server.vercel.app/thesisFiles`
+      );
       const data = await res.json();
       return data;
     },

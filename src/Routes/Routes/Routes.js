@@ -45,7 +45,9 @@ const router = createBrowserRouter([
         path: "/publications/:id",
         element: <IndividualPublications></IndividualPublications>,
         loader: ({ params }) =>
-          fetch(`http://localhost:2000/thesisFiles/${params.id}`),
+          fetch(
+            `https://csedut-hesis-repository-server.vercel.app/thesisFiles/${params.id}`
+          ),
       },
       {
         path: "/myProfile",
@@ -61,7 +63,9 @@ const router = createBrowserRouter([
         path: "/pages/:year",
         element: <SortedPage></SortedPage>,
         loader: ({ params }) =>
-          fetch(`http://localhost:2000/pages/${params.year}`),
+          fetch(
+            `https://csedut-hesis-repository-server.vercel.app/pages/${params.year}`
+          ),
       },
     ],
   },
