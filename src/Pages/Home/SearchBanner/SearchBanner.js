@@ -48,7 +48,7 @@ const SearchBanner = () => {
 
   return (
     <div className="w-2/3 md:w-1/2 mx-auto">
-      <h1 className="text-2xl font-bold md:text-4xl text-center">
+      <h1 className="text-sm font-bold md:text-4xl sm:text-xl text-center">
         CSEDU Thesis Repository
       </h1>
 

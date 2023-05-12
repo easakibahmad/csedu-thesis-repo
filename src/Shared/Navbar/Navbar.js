@@ -73,9 +73,13 @@ const Navbar = () => {
             {/* <span className="text-yellow-500 font-bold pr-2">CSEDU</span>
             <span className="text-blue-600">Thesis Repository</span> */}
             <span className="flex justify-start md:text-2xl  text-md font-medium items-center">
-              <img src={cseduLogo} alt="cseduLogo" className="w-20 h-20" />
+              <img
+                src={cseduLogo}
+                alt="cseduLogo"
+                className="md:w-20 md:h-20 w-10 h-10"
+              />
 
-              <p className="hidden md:block">
+              <p className="hidden md:block ">
                 {" "}
                 <span>CSEDU</span> Thesis Repository
               </p>
