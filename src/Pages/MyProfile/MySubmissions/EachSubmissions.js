@@ -14,9 +14,12 @@ const EachSubmissions = ({ item }) => {
       return;
     }
     try {
-      const response = await fetch(`http://localhost:2000/thesisFiles/${_id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `https://csedut-hesis-repository-server-musfikuroli.vercel.app/thesisFiles/${_id}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (response.ok) {
         alert("Data has been deleted successfully!");
         window.location.reload();

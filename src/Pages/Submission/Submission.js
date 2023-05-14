@@ -12,6 +12,7 @@ const Submission = () => {
   const [formCategorySubmitted, setFormCategorySubmitted] = useState(false);
   const [supervise, setSupervise] = useState(false);
   const [descriptionSubmitted, setDescriptionSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
   const navigate = useNavigate(); // instantiate useNavigate hook
 
@@ -24,7 +25,7 @@ const Submission = () => {
     supervisor: "",
     projectTitle: "",
     category: "",
-    pdf: null,
+    pdf: "",
   });
 
   const handleInputChange = (event) => {
@@ -33,10 +34,19 @@ const Submission = () => {
   };
 
   const handleFileChange = (event) => {
-    const { name, files } = event.target;
-    if (name === "pdf") {
-      setFormData({ ...formData, pdf: files[0] });
+    const selectedFile = event.target.files[0];
+    if (!selectedFile) {
+      setError("Please select a file");
+    } else if (selectedFile.type !== "application/pdf") {
+      setError("Please select a PDF file");
+    } else {
+      setFormData({ ...formData, pdf: selectedFile });
+      setError("");
     }
+    // const { name, files } = event.target;
+    // if (name === "pdf") {
+    //   setFormData({ ...formData, pdf: files[0] });
+    // }
   };
 
   const handleSubmitForm = async (e) => {
@@ -78,6 +88,11 @@ const Submission = () => {
       setDescriptionSubmitted(true);
       return;
     }
+
+    // if (formData.pdf.trim() === "") {
+    //   setError("You have to select pdf file!!");
+    //   return;
+    // }
     navigate("/success");
 
     try {
@@ -300,6 +315,7 @@ const Submission = () => {
                       onChange={handleFileChange}
                     />
                   </div>
+                  {error && <p className="text-red-500">{error}</p>}
                 </div>
               </div>
 

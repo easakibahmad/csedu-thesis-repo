@@ -11,6 +11,7 @@ import PagesOutlet from "../../Layout/PagesOutlet";
 import SortedPage from "../../Pages/SortedPage/SortedPage";
 import Success from "../../Pages/Success/Success";
 import MyProfile from "../../Pages/MyProfile/MyProfile";
+import Search from "../../Pages/Search/Search";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +66,14 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(
             `https://csedut-hesis-repository-server.vercel.app/pages/${params.year}`
+          ),
+      },
+      {
+        path: "/pages/yourSearch/:query",
+        element: <Search></Search>,
+        loader: ({ params }) =>
+          fetch(
+            `https://csedut-hesis-repository-server-musfikuroli.vercel.app/yourSearch?query=${params.query}`
           ),
       },
     ],

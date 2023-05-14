@@ -20,7 +20,7 @@ const PublicationsLeft = () => {
   }
   return (
     <div className="w-1/2 mx-auto mt-6">
-      <p className="text-red-500 font-medium  hover:underline">Sort by Year</p>
+      <p className=" font-bold hover:underline">Sort by Year</p>
       <div className="grid grid-cols-1 mt-3 gap-4">
         {thesisFilesData.map((item) => (
           <Link
