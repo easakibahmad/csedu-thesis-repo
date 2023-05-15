@@ -12,6 +12,7 @@ const Submission = () => {
   const [formCategorySubmitted, setFormCategorySubmitted] = useState(false);
   const [supervise, setSupervise] = useState(false);
   const [descriptionSubmitted, setDescriptionSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
   const navigate = useNavigate(); // instantiate useNavigate hook
 
@@ -24,7 +25,7 @@ const Submission = () => {
     supervisor: "",
     projectTitle: "",
     category: "",
-    pdf: null,
+    pdf: "",
   });
 
   const handleInputChange = (event) => {
@@ -33,9 +34,14 @@ const Submission = () => {
   };
 
   const handleFileChange = (event) => {
-    const { name, files } = event.target;
-    if (name === "pdf") {
-      setFormData({ ...formData, pdf: files[0] });
+    const selectedFile = event.target.files[0];
+    if (!selectedFile) {
+      setError("Please select a file");
+    } else if (selectedFile.type !== "application/pdf") {
+      setError("Please select a PDF file");
+    } else {
+      setFormData({ ...formData, pdf: selectedFile });
+      setError("");
     }
   };
 
@@ -81,10 +87,13 @@ const Submission = () => {
     navigate("/success");
 
     try {
-      const response = await fetch("http://localhost:2000/thesisFiles", {
-        method: "POST",
-        body: formDataToSubmit,
-      });
+      const response = await fetch(
+        "https://csedut-hesis-repository-server.vercel.app/thesisFiles",
+        {
+          method: "POST",
+          body: formDataToSubmit,
+        }
+      );
       const data = await response.json();
       console.log(data);
     } catch (error) {
