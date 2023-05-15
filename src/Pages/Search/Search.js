@@ -8,7 +8,7 @@ const Search = () => {
   console.log(data);
   return (
     <div>
-      {data.length === 0 && (
+      {data?.length === 0 && (
         <p className="mt-7 text-red-500">No results found</p>
       )}
       {data?.map((option) => (
