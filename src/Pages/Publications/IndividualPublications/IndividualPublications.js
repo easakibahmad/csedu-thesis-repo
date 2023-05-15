@@ -3,6 +3,7 @@ import { Viewer, Worker } from "@react-pdf-viewer/core";
 import { getFilePlugin } from "@react-pdf-viewer/get-file";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import { useLoaderData } from "react-router-dom";
+import { BsArrowsFullscreen } from "react-icons/bs";
 
 const IndividualPublications = () => {
   const individualData = useLoaderData();
@@ -35,11 +36,25 @@ const IndividualPublications = () => {
   const getFilePluginInstance = getFilePlugin();
   const { DownloadButton } = getFilePluginInstance;
 
+  const toggleFullScreen = () => {
+    const viewerElement = document.querySelector(".rpv-core__viewer");
+    if (viewerElement) {
+      if (viewerElement.requestFullscreen) {
+        viewerElement.requestFullscreen();
+      } else if (viewerElement.mozRequestFullScreen) {
+        viewerElement.mozRequestFullScreen();
+      } else if (viewerElement.webkitRequestFullscreen) {
+        viewerElement.webkitRequestFullscreen();
+      } else if (viewerElement.msRequestFullscreen) {
+        viewerElement.msRequestFullscreen();
+      }
+    }
+  };
+
   return (
     <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
       <div className="mb-16 mt-6">
-        <div className="grid md:grid-cols-2">
-          {" "}
+        <div className="grid grid-cols-1 ">
           <div className="p-8 my-auto">
             <div className="text-sm items-center  flex justify-start gap-2 mb-3">
               <p className="bg-blue-200 p-1 border rounded">Article</p>
@@ -68,14 +83,21 @@ const IndividualPublications = () => {
               </p>
             </div>
           </div>
+          <div className="px-8 mb-12">
+            <p>
+              <span className="text-xl text-blue-500 font-bold pr-2">
+                Abstract:
+              </span>{" "}
+              <span className="text-sm">{description}</span>
+            </p>
+          </div>
           <div
-            className="rpv-core__viewer"
+            className="rpv-core__viewer w-9/12 mx-auto"
             style={{
               border: "1px solid rgba(0, 0, 0, 0.3)",
               display: "flex",
               flexDirection: "column",
-              height: "350px",
-              margin: "10px 40px",
+              height: "650px",
             }}
           >
             <div
@@ -88,6 +110,12 @@ const IndividualPublications = () => {
               }}
             >
               <DownloadButton />
+              <button
+                className="ml-2 hover:text-blue-400 cursor-pointer rounded px-2 py-1"
+                onClick={toggleFullScreen}
+              >
+                <BsArrowsFullscreen></BsArrowsFullscreen>
+              </button>
             </div>
             <div
               style={{
@@ -100,14 +128,6 @@ const IndividualPublications = () => {
               )}
             </div>
           </div>
-        </div>
-        <div className="px-8 ">
-          <p>
-            <span className="text-xl text-blue-500 font-bold pr-2">
-              Abstract:
-            </span>{" "}
-            <span className="text-sm">{description}</span>
-          </p>
         </div>
       </div>
     </Worker>
