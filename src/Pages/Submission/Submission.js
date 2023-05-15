@@ -12,7 +12,6 @@ const Submission = () => {
   const [formCategorySubmitted, setFormCategorySubmitted] = useState(false);
   const [supervise, setSupervise] = useState(false);
   const [descriptionSubmitted, setDescriptionSubmitted] = useState(false);
-  const [error, setError] = useState("");
 
   const navigate = useNavigate(); // instantiate useNavigate hook
 
@@ -25,7 +24,7 @@ const Submission = () => {
     supervisor: "",
     projectTitle: "",
     category: "",
-    pdf: "",
+    pdf: null,
   });
 
   const handleInputChange = (event) => {
@@ -34,19 +33,10 @@ const Submission = () => {
   };
 
   const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
-    if (!selectedFile) {
-      setError("Please select a file");
-    } else if (selectedFile.type !== "application/pdf") {
-      setError("Please select a PDF file");
-    } else {
-      setFormData({ ...formData, pdf: selectedFile });
-      setError("");
+    const { name, files } = event.target;
+    if (name === "pdf") {
+      setFormData({ ...formData, pdf: files[0] });
     }
-    // const { name, files } = event.target;
-    // if (name === "pdf") {
-    //   setFormData({ ...formData, pdf: files[0] });
-    // }
   };
 
   const handleSubmitForm = async (e) => {
@@ -88,21 +78,13 @@ const Submission = () => {
       setDescriptionSubmitted(true);
       return;
     }
-
-    // if (formData.pdf.trim() === "") {
-    //   setError("You have to select pdf file!!");
-    //   return;
-    // }
     navigate("/success");
 
     try {
-      const response = await fetch(
-        "https://csedut-hesis-repository-server.vercel.app/thesisFiles",
-        {
-          method: "POST",
-          body: formDataToSubmit,
-        }
-      );
+      const response = await fetch("http://localhost:2000/thesisFiles", {
+        method: "POST",
+        body: formDataToSubmit,
+      });
       const data = await response.json();
       console.log(data);
     } catch (error) {
@@ -146,7 +128,7 @@ const Submission = () => {
                     <input
                       name="memberTwo"
                       type="text"
-                      placeholder="member 2"
+                      placeholder="Enter Name of Member 2"
                       className={`input input-bordered ${
                         formSubmitted && formData.memberTwo.trim() === ""
                           ? "input-error"
@@ -189,9 +171,20 @@ const Submission = () => {
                       onChange={handleInputChange}
                       supervisorSubmitted
                     >
-                      <option value="Dr XYZ">Dr XYZ</option>
-                      <option value="Dr ABC">Dr ABC</option>
-                      <option value="Dr DEF">Dr DEF</option>
+                      <option value="Dr. Sarker Tanveer Ahmed Rumee">
+                        Dr. Sarker Tanveer Ahmed Rumee
+                      </option>
+                      <option value="Dr. Md. Mamun-or-Rashid">
+                        Dr. Md. Mamun-or-Rashid
+                      </option>
+                      <option value="Dr. Mosaddek Hossain Kamal">
+                        Dr. Mosaddek Hossain Kamal
+                      </option>
+                      <option value="Dr. Upama Kabir">Dr. Upama Kabir</option>
+                      <option value="Dr. Chowdhury Farhan Ahmed">
+                        Dr. Chowdhury Farhan Ahmed
+                      </option>
+                      <option value="Md. Fahim Arefin">Md. Fahim Arefin</option>
                     </select>
                     {supervise && formData.supervisor.trim() === "" && (
                       <div className="error-message text-red-600">
@@ -214,10 +207,30 @@ const Submission = () => {
                       defaultValue="Data Structure"
                       onChange={handleInputChange}
                     >
-                      <option value="Data Structure">Data Structure</option>
-                      <option value="Database">Database</option>
-                      <option value="Programming Language">
-                        Programming Language
+                      <option value="Blockchain Technology">
+                        Blockchain Technology
+                      </option>
+                      <option value="Cloud Computing">Cloud Computing</option>
+                      <option value="Cybersecurity">Cybersecurity</option>
+                      <option value="Computer Vision and Image Processing">
+                        Computer Vision and Image Processing
+                      </option>
+                      <option value="Data Mining">Data Mining</option>
+                      <option value="Human-Computer Interaction (HCI)">
+                        Human-Computer Interaction (HCI)
+                      </option>
+                      <option value="Internet of Things (IoT)">
+                        Internet of Things (IoT)
+                      </option>
+                      <option value="Machine Learning">Machine Learning</option>
+                      <option value="Natural Language Processing (NLP)">
+                        Natural Language Processing (NLP)
+                      </option>
+                      <option value="Robotics and Autonomous Systems">
+                        Robotics and Autonomous Systems
+                      </option>
+                      <option value="Software Engineering">
+                        Software Engineering
                       </option>
                     </select>
                     {formCategorySubmitted &&
@@ -242,9 +255,12 @@ const Submission = () => {
                       value={formData.publicationYear}
                       onChange={handleInputChange}
                     >
+                      <option value="2023">2023</option>
                       <option value="2022">2022</option>
                       <option value="2021">2021</option>
                       <option value="2020">2020</option>
+                      <option value="2019">2019</option>
+                      <option value="2018">2018</option>
                     </select>
                     {formYearSubmitted &&
                       formData.publicationYear.trim() === "" && (
@@ -262,7 +278,7 @@ const Submission = () => {
                     <input
                       name="projectTitle"
                       type="text"
-                      placeholder="project title"
+                      placeholder="Project Title"
                       // className="input input-bordered"
                       className={`input input-bordered ${
                         formTitleSubmitted &&
@@ -286,7 +302,7 @@ const Submission = () => {
                     </label>
                     <textarea
                       name="description"
-                      placeholder="short description of your project"
+                      placeholder="Short description of your project"
                       className={`textarea textarea-bordered textarea-md w-full ${
                         descriptionSubmitted &&
                         formData.description.trim() === ""
@@ -315,7 +331,6 @@ const Submission = () => {
                       onChange={handleFileChange}
                     />
                   </div>
-                  {error && <p className="text-red-500">{error}</p>}
                 </div>
               </div>
 

@@ -47,7 +47,7 @@ const Login = () => {
           <input
             name="email"
             type="email"
-            placeholder="type your email"
+            placeholder="Type your email"
             className="input input-bordered w-full rounded"
             {...register("email", { required: "email is required" })}
           />
@@ -63,7 +63,7 @@ const Login = () => {
           <input
             name="password"
             type="password"
-            placeholder="type your password"
+            placeholder="Type your password"
             className="input input-bordered w-full rounded"
             {...register("password", {
               required: "password is required",
@@ -80,11 +80,11 @@ const Login = () => {
         <input className="btn btn-accent rounded" value="Login" type="submit" />
         <>{loginError && <p className="text-red-500">{loginError}</p>}</>
         <p className="mt-3">
-          new here? please{" "}
+          New here? Please{" "}
           <Link className="text-info" to="/signup">
-            signup
+            Signup
           </Link>{" "}
-          first!!
+          First !!!
         </p>
         {/* <div className="divider">OR</div>
         <div className="btn btn-accent w-full rounded">

@@ -4,7 +4,7 @@ const About = () => {
   return (
     <div className="mx-16 my-12">
       <p>
-        That's great to hear! Building a thesis repository website for the
+        Thesis repository website for the
         Computer Science and Engineering Department at the University of Dhaka
         (CSEDU) can be a valuable resource for students, faculty, and
         researchers. A thesis repository serves as a centralized platform to

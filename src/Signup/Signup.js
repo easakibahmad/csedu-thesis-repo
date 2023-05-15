@@ -87,7 +87,7 @@ const Signup = () => {
           <input
             name="name"
             type="text"
-            placeholder="type your name"
+            placeholder="Type your name"
             className="input input-bordered w-full rounded"
             {...register("name", { required: "name is required" })}
           />
@@ -125,7 +125,10 @@ const Signup = () => {
           >
             <option value="25th">25th</option>
             <option value="24th">24th</option>
-            <option value="23th">23th</option>
+            <option value="23rd">23rd</option>
+            <option value="22nd">22nd</option>
+            <option value="21st">21st</option>
+            <option value="20th">20th</option>
           </select>
           {errors.batch && (
             <p className="text-rose-500">{errors.batch?.message}</p>
@@ -138,7 +141,7 @@ const Signup = () => {
           <input
             name="email"
             type="email"
-            placeholder="type your email"
+            placeholder="Type your email"
             className="input input-bordered w-full rounded"
             {...register("email", { required: "email is required" })}
           />
@@ -154,7 +157,7 @@ const Signup = () => {
           <input
             name="password"
             type="password"
-            placeholder="type your password"
+            placeholder="Type your password"
             className="input input-bordered w-full rounded"
             {...register("password", {
               required: "password is required",
@@ -164,14 +167,14 @@ const Signup = () => {
             <p className="text-rose-500">{errors.password?.message}</p>
           )}
         </div>
-        <input className="btn btn-accent rounded" value="Login" type="submit" />
+        <input className="btn btn-accent rounded" value="Signup" type="submit" />
         <>{signupError && <p className="text-rose-500">{signupError}</p>}</>
         <p className="mt-3">
-          Already Has an Account? please{" "}
+          Already Has an Account? Please{" "}
           <Link className="text-info" to="/login">
-            Signup
+            Login
           </Link>{" "}
-          first!!
+          Here !!!
         </p>
         {/* <div className="divider">OR</div> */}
         {/* <div
