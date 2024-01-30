@@ -11,7 +11,7 @@ const queryClient = new QueryClient();
 
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
+    <QueryClientProvider  client={queryClient}>
       <AuthProvider>
         <App />
       </AuthProvider>

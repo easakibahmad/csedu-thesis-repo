@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Success = () => {
   return (
     <div className="bg-gray-300 h-screen pt-16">
-      <div className="h-48 lg:w-3/12 md:w-2/6 w-3/5 mx-auto bg-green-400 flex items-center">
+      <div className="h-48 lg:w-3/12 md:w-2/6 w-3/5 mx-auto bg-blue-500 flex items-center">
         <span className="text-8xl mx-auto text-white">
           <AiOutlineCheckCircle></AiOutlineCheckCircle>
         </span>
@@ -16,7 +16,7 @@ const Success = () => {
           </h1>
           <Link
             to="/myProfile"
-            className="cursor-pointer w-3/5 mx-auto p-2 rounded justify-center flex items-center bg-green-400 text-white"
+            className="cursor-pointer w-3/5 mx-auto p-2 rounded justify-center flex items-center bg-blue-500 text-white"
           >
             <span>My Submissions</span>
             <span className="text-2xl">

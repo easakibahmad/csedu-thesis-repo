@@ -3,10 +3,12 @@ import Navbar from "../Shared/Navbar/Navbar";
 import { Outlet, useNavigate } from "react-router-dom";
 import PublicationsLeft from "../Pages/Publications/PublicationsLeft/PublicationsLeft";
 import { ImSearch } from "react-icons/im";
+import Loading from "../Shared/Loading/Loading";
 
 const PagesOutlet = () => {
   const [searchText, setSearchText] = useState("");
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (event) => {
     setSearchText(event.target.value);
@@ -16,6 +18,7 @@ const PagesOutlet = () => {
     event.preventDefault();
     console.log(searchText);
     try {
+      setIsLoading(true);
       const response = await fetch(
         `https://csedut-hesis-repository-server-musfikuroli.vercel.app/yourSearch?query=${searchText}`
       );
@@ -26,6 +29,8 @@ const PagesOutlet = () => {
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -46,10 +51,12 @@ const PagesOutlet = () => {
               <button
                 type="submit"
                 className="text-2xl border border-blue-600 hover:bg-blue-400 bg-blue-600 text-white p-2 cursor-pointer "
+                disabled={isLoading}
               >
                 <ImSearch />
               </button>
             </div>
+            {isLoading && <Loading></Loading>}
           </form>
         </div>
         <div className="grid grid-cols-6">

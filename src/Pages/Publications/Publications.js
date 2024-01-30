@@ -16,6 +16,7 @@ const Publications = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     console.log(searchText);
     try {
       const response = await fetch(

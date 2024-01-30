@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+// import React, { useContext } from "react";
 import { useState } from "react";
-import { AuthContext } from "../../context/AuthProvider";
+// import { AuthContext } from "../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
 const Submission = () => {
-  const { user } = useContext(AuthContext);
-  const { displayName, email } = user;
+  // const { user } = useContext(AuthContext);
+  // const { displayName, email } = user;
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formTitleSubmitted, setFormTitleSubmitted] = useState(false);
   const [formYearSubmitted, setFormYearSubmitted] = useState(false);
@@ -13,13 +13,15 @@ const Submission = () => {
   const [supervise, setSupervise] = useState(false);
   const [descriptionSubmitted, setDescriptionSubmitted] = useState(false);
   const [error, setError] = useState("");
+  const [memberOneError, setMemberOneError] = useState(false);
+  const [emailUser, setEmailUser] = useState(false);
 
   const navigate = useNavigate(); // instantiate useNavigate hook
 
   const [formData, setFormData] = useState({
-    memberOne: displayName,
+    memberOne: "",
     memberTwo: "",
-    email: email,
+    email: "",
     description: "",
     publicationYear: "",
     supervisor: "",
@@ -59,8 +61,16 @@ const Submission = () => {
     formDataToSubmit.append("projectTitle", formData.projectTitle);
     formDataToSubmit.append("date", new Date());
 
+    if (formData.memberOne.trim() === "") {
+      setMemberOneError(true);
+      return;
+    }
     if (formData.memberTwo.trim() === "") {
       setFormSubmitted(true);
+      return;
+    }
+    if (formData.email.trim() === "") {
+      setEmailUser(true);
       return;
     }
     if (formData.supervisor.trim() === "") {
@@ -124,11 +134,20 @@ const Submission = () => {
                     <input
                       name="memberOne"
                       type="text"
-                      placeholder="member 1"
+                      placeholder="Enter Name of Member 1"
                       value={formData.memberOne}
                       onChange={handleInputChange}
-                      className="input input-bordered"
+                      className={`input input-bordered ${
+                        memberOneError && formData.memberOne.trim() === ""
+                          ? "input-error"
+                          : ""
+                      }`}
                     />
+                    {memberOneError && formData.memberOne.trim() === "" && (
+                      <div className="error-message">
+                        This field is required.
+                      </div>
+                    )}
                   </div>
                   <div className="form-control">
                     <label htmlFor="memberTwo" className="label">
@@ -159,11 +178,20 @@ const Submission = () => {
                     <input
                       name="email"
                       type="text"
-                      placeholder="email"
-                      className="input input-bordered"
+                      placeholder="Email"
+                      className={`input input-bordered ${
+                        emailUser && formData.email.trim() === ""
+                          ? "input-error"
+                          : ""
+                      }`}
                       value={formData.email}
                       onChange={handleInputChange}
                     />
+                    {emailUser && formData.email.trim() === "" && (
+                      <div className="error-message">
+                        This field is required.
+                      </div>
+                    )}
                   </div>
                   <div className="form-control">
                     <label htmlFor="supervisor" className="label">
@@ -307,7 +335,7 @@ const Submission = () => {
                   </div>
                   <div className="form-control">
                     <label htmlFor="abstract" className="label">
-                      <span className="label-text">Description:</span>
+                      <span className="label-text">Abstract:</span>
                     </label>
                     <textarea
                       name="description"

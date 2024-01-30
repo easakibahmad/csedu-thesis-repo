@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { ImSearch } from "react-icons/im";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../../Shared/Loading/Loading";
 
 const SearchBanner = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const [searchText, setSearchText] = useState("");
   const navigate = useNavigate();
 
@@ -14,6 +17,7 @@ const SearchBanner = () => {
     event.preventDefault();
     console.log(searchText);
     try {
+      setIsLoading(true);
       const response = await fetch(
         `https://csedut-hesis-repository-server-musfikuroli.vercel.app/yourSearch?query=${searchText}`
       );
@@ -24,17 +28,19 @@ const SearchBanner = () => {
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false); // Set loading state back to false
     }
   };
 
   return (
-    <div className="w-2/3 md:w-1/2 mx-auto">
-      <h1 className="text-sm font-bold md:text-4xl sm:text-xl text-center">
+    <div className="">
+      {/* <h1 className="text-sm font-bold md:text-4xl sm:text-xl text-center">
         CSEDU Thesis Repository
-      </h1>
+      </h1> */}
 
       <form onSubmit={handleSubmit}>
-        <div className="flex justify-center my-6 items-center">
+        <div className="flex justify-center items-center">
           <input
             type="text"
             name="searchText"
@@ -46,10 +52,12 @@ const SearchBanner = () => {
           <button
             type="submit"
             className="text-2xl border border-blue-600 hover:bg-blue-400 bg-blue-600 text-white p-2 cursor-pointer "
+            disabled={isLoading}
           >
             <ImSearch />
           </button>
         </div>
+        {isLoading && <Loading></Loading>}
       </form>
     </div>
   );
