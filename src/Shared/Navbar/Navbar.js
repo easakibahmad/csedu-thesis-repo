@@ -7,6 +7,7 @@ import SearchBanner from "../../Components/SearchBanner";
 import { ImFacebook, ImTwitter, ImInstagram, ImLinkedin } from "react-icons/im";
 import Thirty from "../../Assets/Images/30year.jpg";
 import NavigationDropDown from "../../Components/NavigationDropDown";
+import NavHomeLogo from "../../Components/NavHomeLogo";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -90,7 +91,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex items-center justify-between w-full">
-          <Link to="/" className="flex items-center gap-2">
+          {/* <Link to="/" className="flex items-center gap-2">
             <div
               style={{ color: "#107fa8" }}
               className="grid cols-1 md:text-2xl border-r-2 pr-2  text-md font-medium items-center"
@@ -109,7 +110,8 @@ const Navbar = () => {
             <div>
               <img className="h-20 w-30 " src={Thirty} alt="Thirty Years!" />
             </div>
-          </Link>
+          </Link> */}
+          <NavHomeLogo Thirty={Thirty} cseduLogo={cseduLogo}></NavHomeLogo>
           <div>
             <p className="text-sky-800 text-md font-bold">
               CSEDU Academic Dissertations: A Repository of Ideas

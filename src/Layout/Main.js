@@ -1,15 +1,19 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../Shared/Navbar/Navbar";
 import PageWrapper from "../Components/PageWrapper";
 import NavigationBar from "../Components/NavigationBar";
 
-const Main = () => {
+const Main = () =>
+{
+  const location = useLocation();
+  const checkCurrentLocation =
+    location.pathname.includes("login") || location.pathname.includes("signup");
   return (
     <div className="mb-12">
-      <NavigationBar></NavigationBar>
+      {checkCurrentLocation || <NavigationBar></NavigationBar>}
       <PageWrapper>
-        <Navbar></Navbar>
+        {checkCurrentLocation || <Navbar></Navbar>}
         <Outlet></Outlet>
       </PageWrapper>
     </div>
