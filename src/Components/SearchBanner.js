@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ImSearch } from "react-icons/im";
 import { useNavigate } from "react-router-dom";
-import Loading from "../../../Shared/Loading/Loading";
+import Loading from "../Shared/Loading/Loading";
 
 const SearchBanner = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -44,8 +44,8 @@ const SearchBanner = () => {
           <input
             type="text"
             name="searchText"
-            placeholder="Search Articles"
-            className="p-2  focus:border-blue-300 focus:outline-none  border w-3/4"
+            placeholder="Search Thesis Repository"
+            className="p-2  focus:border-blue-300 focus:outline-none  border"
             value={searchText}
             onChange={handleInputChange}
           />

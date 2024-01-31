@@ -3,10 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
 import cseduLogo from "../../Assets/Images/cseduLogo.png";
 import { AuthContext } from "../../context/AuthProvider";
-import { ImProfile } from "react-icons/im";
-import SearchBanner from "../../Pages/Home/SearchBanner/SearchBanner";
+import SearchBanner from "../../Components/SearchBanner";
 import { ImFacebook, ImTwitter, ImInstagram, ImLinkedin } from "react-icons/im";
-
+import Thirty from "../../Assets/Images/30year.jpg";
+import NavigationDropDown from "../../Components/NavigationDropDown";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -30,26 +30,33 @@ const Navbar = () => {
   };
   const menuItems = (
     <React.Fragment>
-      <Link to="/">
-        <span style={linkStyle}>Home</span>
-      </Link>
       <Link to="/publications">
-        <span style={linkStyle}>Publications</span>
+        <span style={linkStyle}>
+          <NavigationDropDown item="Publications"></NavigationDropDown>
+        </span>
       </Link>
+
       <Link to="/about">
-        <span style={linkStyle}>About</span>
+        <span style={linkStyle}>
+          <NavigationDropDown item="About"></NavigationDropDown>
+        </span>
       </Link>
+
       {user?.uid && (
         <>
           <Link to="/submission">
-            <span style={linkStyle}>Submission</span>
+            <span style={linkStyle}>
+              <NavigationDropDown item="Submission"></NavigationDropDown>
+            </span>
           </Link>
           <Link onClick={handleSignOut} to="/">
-            <span style={linkStyle}>Signout</span>
+            <span style={linkStyle}>
+              <NavigationDropDown item="Signout"></NavigationDropDown>
+            </span>
           </Link>
           <Link to="/myProfile">
             <span className="text-xl font-extrabold" style={linkStyle}>
-              <ImProfile></ImProfile>
+              <NavigationDropDown item="Profile"></NavigationDropDown>
             </span>
           </Link>
         </>
@@ -75,14 +82,18 @@ const Navbar = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             {menuItems}
-            {!user?.uid && <Link to="/login">Login</Link>}
+            {!user?.uid && (
+              <Link to="/login">
+                <NavigationDropDown item="Login"></NavigationDropDown>
+              </Link>
+            )}
           </ul>
         </div>
         <div className="flex items-center justify-between w-full">
-          <Link to="/">
+          <Link to="/" className="flex items-center gap-2">
             <div
               style={{ color: "#107fa8" }}
-              className="grid cols-1 md:text-2xl  text-md font-medium items-center"
+              className="grid cols-1 md:text-2xl border-r-2 pr-2  text-md font-medium items-center"
             >
               <div className="flex gap-1 items-center ">
                 <img src={cseduLogo} alt="cseduLogo" className="w-10 h-10" />
@@ -95,6 +106,9 @@ const Navbar = () => {
                 Thesis Repository
               </p>
             </div>
+            <div>
+              <img className="h-20 w-30 " src={Thirty} alt="Thirty Years!" />
+            </div>
           </Link>
           <div>
             <p className="text-sky-800 text-md font-bold">
@@ -102,14 +116,29 @@ const Navbar = () => {
             </p>
           </div>
           <div>
-            <div className="my-2">
+            <div className="mb-4 mt-2">
               <SearchBanner></SearchBanner>
             </div>
-            <div className="flex justify-end gap-3 mr-4">
-              <ImFacebook size={15} />
-              <ImTwitter size={15} />
-              <ImInstagram size={15} />
-              <ImLinkedin size={15} />
+            <div className="flex justify-end gap-3">
+              <Link
+                to="https://www.facebook.com/groups/cse.udhaka"
+                className="text-blue-600 hover:text-black"
+              >
+                <ImFacebook size={17} />
+              </Link>
+
+              <Link
+                className="text-blue-600 hover:text-black"
+                to="https://www.linkedin.com/groups/5166623/"
+              >
+                <ImLinkedin size={17} />
+              </Link>
+              <Link className="text-blue-600 hover:text-black">
+                <ImTwitter size={17} />
+              </Link>
+              <Link className="text-blue-600 hover:text-black">
+                <ImInstagram size={17} />
+              </Link>
             </div>
           </div>
         </div>
@@ -118,7 +147,7 @@ const Navbar = () => {
         className="hidden lg:flex lg:justify-between"
         style={{ fontSize: "20px" }}
       >
-        <div className=" px-1 grid grid-cols-6 w-full">{menuItems}</div>
+        <div className=" px-1 grid grid-cols-6 gap-6 w-full">{menuItems}</div>
         <div style={{ width: "140px" }}>
           {!user?.uid && (
             <Link
@@ -137,7 +166,7 @@ const Navbar = () => {
               }}
               to="/signup"
             >
-              JOIN US
+              <span className="hover:text-black">JOIN US</span>
             </Link>
           )}
         </div>
