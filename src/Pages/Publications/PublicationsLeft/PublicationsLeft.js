@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 const PublicationsLeft = () => {
   const { data: thesisFilesData = [], isLoading } = useQuery({
-    // added date as query key
     queryKey: ["publicationYear"],
     queryFn: async () => {
       const res = await fetch(
@@ -19,7 +18,7 @@ const PublicationsLeft = () => {
     return <Loading></Loading>;
   }
   return (
-    <div className="w-1/2 mx-auto mt-6">
+    <div className="w-1/2 mx-auto mt-6 text-white">
       <p className=" font-bold hover:underline">Sort by Year</p>
       <div className="grid grid-cols-1 mt-3 gap-4">
         {thesisFilesData.map((item) => (

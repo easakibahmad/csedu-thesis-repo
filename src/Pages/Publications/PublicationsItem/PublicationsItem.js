@@ -14,7 +14,7 @@ const PublicationsItem = ({ option }) => {
   } = option;
 
   return (
-    <div className="my-6 md:w-3/4">
+    <div className="my-6">
       <Link
         to={`/publications/${_id}`}
         className="font-medium md:text-xl text-md"
