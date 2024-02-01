@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Dropdown, Space } from "antd";
+import { Button, Dropdown, Space } from "antd";
 import { Link } from "react-router-dom";
 import { ImArrowRight } from "react-icons/im";
+import { FiChevronRight } from "react-icons/fi";
 
 const NavigationDropDown = ({ item }) => {
   const [dropdownActive, setDropdownActive] = useState(false);
@@ -42,19 +43,69 @@ const NavigationDropDown = ({ item }) => {
   return (
     <Dropdown
       overlay={
-        <div className=" h-24 w-96">
+        <div className="">
           <div className="bg-blue-500 border-gray-300 grid grid-cols-2">
-            <Link
-              to={getItemLink()}
-              className="text-white flex items-center px-2 gap-2 py-3"
-            >
-              <span className="text-2xl">
-                <ImArrowRight></ImArrowRight>
-              </span>{" "}
-              {item}
-            </Link>
-            <div className="p-2 bg-white">
-              {linkContents[item] || linkContents.Default}
+            <div className="">
+              <Link
+                to={getItemLink()}
+                className="text-white flex items-center px-2 gap-2 py-3"
+              >
+                <span className="text-2xl">
+                  <FiChevronRight />
+                </span>{" "}
+                {item}
+              </Link>
+              <Link className="text-white flex items-center px-2 gap-2 py-3">
+                <span className="text-2xl">
+                  <FiChevronRight />{" "}
+                </span>{" "}
+                CSEDU at a glance
+              </Link>
+              <Link className="text-white flex items-center px-2 gap-2 py-3">
+                <span className="text-2xl">
+                  <FiChevronRight />{" "}
+                </span>{" "}
+                CSEDU Strategic Plan
+              </Link>
+              <Link className="text-white flex items-center px-2 gap-2 py-3">
+                <span className="text-2xl">
+                  <FiChevronRight />{" "}
+                </span>{" "}
+                Organization of CSEDU
+              </Link>
+
+              <Link className="text-white flex items-center px-2 gap-2 py-3">
+                <span className="text-2xl">
+                  <FiChevronRight />{" "}
+                </span>{" "}
+                Member Grade Elevation
+              </Link>
+              <Link className="text-white flex items-center px-2 gap-2 py-3">
+                <span className="text-2xl">
+                  <FiChevronRight />{" "}
+                </span>{" "}
+                Member insurance and discounts
+              </Link>
+              <Link className="text-white flex items-center px-2 gap-2 py-3">
+                <span className="text-2xl">
+                  <FiChevronRight />{" "}
+                </span>{" "}
+                Memberships and Subscriptions Catalog
+              </Link>
+            </div>
+            <div className="p-2 bg-white grid grid-cols-1 gap-4">
+              <p> {linkContents[item] || linkContents.Default}</p>
+              <div>
+                <p className="mb-3">What do you want to do?</p>
+                <div className="flex justify-between gap-3 items-center">
+                  <input
+                    type="text"
+                    placeholder="Search here..."
+                    className="input input-bordered input-info w-full max-w-xs focus:outline-none"
+                  />
+                  <Button className="bg-yellow-500">Go</Button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -61,7 +61,7 @@ const Login = () => {
                 name="email"
                 type="email"
                 placeholder="Email"
-                className="input input-bordered md:w-3/5 w-full rounded focus:ring-0 focus:outline-none"
+                className="input input-bordered md:w-3/5 border-black w-full rounded focus:ring-0 focus:outline-none"
                 {...register("email", { required: "Email is required" })}
               />
               {errors.email && (
@@ -77,7 +77,7 @@ const Login = () => {
                 name="password"
                 type="password"
                 placeholder="Password"
-                className="input input-bordered md:w-3/5 w-full rounded focus:ring-0 focus:outline-none"
+                className="input input-bordered border-black md:w-3/5 w-full rounded focus:ring-0 focus:outline-none"
                 {...register("password", {
                   required: "Password is required",
                 })}
@@ -91,7 +91,7 @@ const Login = () => {
                 style={{
                   backgroundColor: "#e37222",
                 }}
-                className="focus:outline-none w-24 rounded py-1 text-white hover:text-blue-600"
+                className="cursor-pointer focus:outline-none w-24  rounded py-1 text-white hover:text-blue-600"
                 type="submit"
                 // className="btn btn-accent rounded focus:ring-2 focus:ring-accent focus:outline-none"
                 value="Sign In"

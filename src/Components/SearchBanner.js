@@ -54,10 +54,10 @@ const SearchBanner = () => {
             className="text-2xl border border-blue-600 hover:bg-blue-400 bg-blue-600 text-white p-2 cursor-pointer "
             disabled={isLoading}
           >
-            <ImSearch />
+            {isLoading ? <Loading></Loading> : <ImSearch />}
           </button>
         </div>
-        {isLoading && <Loading></Loading>}
+        {/* {isLoading && <Loading></Loading>} */}
       </form>
     </div>
   );

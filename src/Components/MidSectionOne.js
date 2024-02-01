@@ -2,6 +2,7 @@
 import React from "react";
 import CardTwoCol from "./CardTwoCol";
 import CardOneCol from "./CardOneCol";
+import CardA from "./CardA";
 
 const MidSectionOne = () => {
   return (
@@ -11,7 +12,7 @@ const MidSectionOne = () => {
       </div>
       <div className="grid cols-1 gap-4">
         <CardTwoCol></CardTwoCol>
-        <CardTwoCol></CardTwoCol>
+        <CardA></CardA>
       </div>
     </div>
   );

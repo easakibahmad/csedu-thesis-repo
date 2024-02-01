@@ -1,33 +1,38 @@
 import React from "react";
-import year from "../Assets/Images/2.jpeg";
+import year from "../Assets/Images/3.png";
 import { Link } from "react-router-dom";
 import { FiChevronRight } from "react-icons/fi";
 
-const CardTwoCol= () => {
+const CardA = () => {
   return (
     <div className="grid grid-cols-2 gap-6">
       <div className="h-4/5">
         <p className="py-2 text-sm font-bold">
-          Jumpstart your leadership training
+          2024 CSEDU Custom Integrated Circuits Conference (CICC)
         </p>
         <img src={year} className="w-full" alt="card_image" />
       </div>
       <div className="border-b-4" style={{ borderColor: "#ccc" }}>
         <p className="my-3 text-sm">
-          Register for the virtual or in-person CSEDU Leading Technical Teams, a
-          training session starting in February 2024, covering trends and best
-          practices to empower you to navigate complex challenges with
-          confidence. Discount available for CSEDU members.
+          The CSEDU Custom Integrated Circuits Conference is a premier
+          conference devoted to IC development. The conference program is a
+          blend of oral presentations, exhibits, panels, and forums.
         </p>
         <Link
           to="#"
           className="flex gap-1 text-blue-500 items-center link link-hover"
         >
-          <FiChevronRight /> Learn more
+          <FiChevronRight /> Register now
+        </Link>
+        <Link
+          to="#"
+          className="flex gap-1 text-blue-500 items-center link link-hover"
+        >
+          <FiChevronRight /> Search all IEEE conferences
         </Link>
       </div>
     </div>
   );
 };
 
-export default CardTwoCol;
+export default CardA;

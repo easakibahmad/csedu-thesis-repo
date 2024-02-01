@@ -1,20 +1,20 @@
-import React from 'react';
-import CardTwoCol2 from './CardTwoCol2';
-import CardTwoCol3 from './CardTwoCol3';
-import CardOneCol from './CardOneCol';
+import React from "react";
+import CardB from "./CardB";
+import CardC from "./CardC";
+import CardD from "./CardD";
 
 const MidSectionTwo = () => {
-    return (
-      <div className="grid grid-cols-2 gap-6">
-        <div className=' mb-8'>
-          <CardOneCol></CardOneCol>
-        </div>
-        <div className="grid cols-1 gap-6">
-                <CardTwoCol2></CardTwoCol2>
-                <CardTwoCol3></CardTwoCol3>
-        </div>
+  return (
+    <div className="grid grid-cols-2 gap-6">
+      <div className=" mb-8">
+        <CardB></CardB>
       </div>
-    );
+      <div className="grid cols-1 gap-6">
+        <CardC></CardC>
+        <CardD></CardD>
+      </div>
+    </div>
+  );
 };
 
 export default MidSectionTwo;

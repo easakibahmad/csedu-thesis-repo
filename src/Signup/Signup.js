@@ -9,6 +9,8 @@ import { useState } from "react";
 import { toast } from "react-hot-toast";
 import NavHomeLogo from "../Components/NavHomeLogo";
 import { LiaAngleDoubleRightSolid } from "react-icons/lia";
+import "./Signup.css"
+import StyledInput from "../Components/StyledInput";
 
 const Signup = () => {
   const {
@@ -97,8 +99,8 @@ const Signup = () => {
             </p>
           </div>
         </div>
-        <div className="grid grid-cols-1 my-6 md:grid-cols-2 gap-8 items-center">
-          <div className="md:col-span-1">
+        <div className="grid grid-cols-1 my-6 md:grid-cols-2 gap-8 ">
+          <div className="md:col-span-1 ">
             <form
               onSubmit={handleSubmit(handleSignup)}
               className="grid grid-cols-1 gap-4"
@@ -107,8 +109,8 @@ const Signup = () => {
                 <input
                   name="name"
                   type="text"
-                  placeholder="Full name"
-                  className="focus:placeholder-opacity-0 placeholder-opacity-100 focus:outline-none input input-bordered w-full rounded"
+                  placeholder="Full Name"
+                  className="focus:placeholder-opacity-0 border-black placeholder-opacity-100 focus:outline-none input input-bordered w-full rounded"
                   {...register("name", { required: "Name is required" })}
                 />
                 {errors.name && (
@@ -119,8 +121,8 @@ const Signup = () => {
                 <input
                   name="registration"
                   type="number"
-                  placeholder="University registration number (ex: 2018125353)"
-                  className="focus:outline-none input input-bordered w-full rounded"
+                  placeholder="University Registration Number (Ex: 2018125353)"
+                  className="focus:outline-none input border-black input-bordered w-full rounded"
                   {...register("registration", {
                     required: "Registration no is required",
                   })}
@@ -132,7 +134,7 @@ const Signup = () => {
               <div className="form-control">
                 <select
                   name="batch"
-                  className="focus:outline-none select select-bordered w-full rounded"
+                  className="focus:outline-none border-black select select-bordered w-full rounded"
                   {...register("batch", {
                     required: "Batch is required",
                   })}
@@ -159,8 +161,8 @@ const Signup = () => {
                 <input
                   name="email"
                   type="email"
-                  placeholder="Type your email"
-                  className="focus:outline-none input input-bordered w-full rounded"
+                  placeholder="Type Your Email"
+                  className="focus:outline-none border-black input input-bordered w-full rounded"
                   {...register("email", { required: "Email is required" })}
                 />
                 {errors.email && (
@@ -171,8 +173,8 @@ const Signup = () => {
                 <input
                   name="password"
                   type="password"
-                  placeholder="Type your password"
-                  className="input focus:outline-none input-bordered w-full rounded"
+                  placeholder="Type Your Password"
+                  className="input focus:outline-none border-black input-bordered w-full rounded"
                   {...register("password", {
                     required: "Password is required",
                   })}
@@ -210,7 +212,7 @@ const Signup = () => {
             <div className="form-control">
               <button
                 style={{
-                  background: termsAccepted ? "#e37222" : "#ccc", 
+                  background: termsAccepted ? "#e37222" : "#ccc",
                 }}
                 className="focus:outline-none w-36 rounded py-1 text-white hover:text-blue-600"
                 type="submit"

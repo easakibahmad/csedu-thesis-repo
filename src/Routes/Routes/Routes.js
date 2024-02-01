@@ -54,20 +54,6 @@ const router = createBrowserRouter([
         path: "/myProfile",
         element: <MyProfile></MyProfile>,
       },
-    ],
-  },
-  {
-    path: "/signup",
-    element: <Signup></Signup>,
-  },
-  {
-    path: "/login",
-    element: <Login></Login>,
-  },
-  {
-    path: "/pages",
-    element: <PagesOutlet></PagesOutlet>,
-    children: [
       {
         path: "/pages/:year",
         element: <SortedPage></SortedPage>,
@@ -86,6 +72,36 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/signup",
+    element: <Signup></Signup>,
+  },
+  {
+    path: "/login",
+    element: <Login></Login>,
+  },
+  // {
+  //   path: "/pages",
+  //   element: <PagesOutlet></PagesOutlet>,
+  //   children: [
+  //     {
+  //       path: "/pages/:year",
+  //       element: <SortedPage></SortedPage>,
+  //       loader: ({ params }) =>
+  //         fetch(
+  //           `https://csedut-hesis-repository-server.vercel.app/pages/${params.year}`
+  //         ),
+  //     },
+  //     {
+  //       path: "/pages/yourSearch/:query",
+  //       element: <Search></Search>,
+  //       loader: ({ params }) =>
+  //         fetch(
+  //           `https://csedut-hesis-repository-server-musfikuroli.vercel.app/yourSearch?query=${params.query}`
+  //         ),
+  //     },
+  //   ],
+  // },
   {
     path: "/success",
     element: <Success></Success>,
