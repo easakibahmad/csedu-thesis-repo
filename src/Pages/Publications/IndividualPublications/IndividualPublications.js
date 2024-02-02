@@ -54,8 +54,8 @@ const IndividualPublications = () => {
 
   return (
     <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
-      <div className="mb-16 mt-6">
-        <div className="grid grid-cols-1 ">
+      <div className="mb-16 mt-6 grid md:grid-cols-2 grid-cols-1">
+        <div>
           <div className="p-8 my-auto">
             <div className="text-sm items-center  flex justify-start gap-2 mb-3">
               <p className="bg-blue-200 p-1 border rounded">Article</p>
@@ -92,8 +92,10 @@ const IndividualPublications = () => {
               <span className="text-sm">{description}</span>
             </p>
           </div>
+        </div>
+        <div className="grid grid-cols-1 mt-6">
           <div
-            className="rpv-core__viewer w-9/12 mx-auto"
+            className="rpv-core__viewer w-full mx-auto"
             style={{
               border: "1px solid rgba(0, 0, 0, 0.3)",
               display: "flex",

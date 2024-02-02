@@ -39,12 +39,6 @@ const Navbar = () => {
         </span>
       </Link>
 
-      <Link to="/about">
-        <span style={linkStyle}>
-          <NavigationDropDown item="About"></NavigationDropDown>
-        </span>
-      </Link>
-
       <Link to="/submission">
         <span style={linkStyle}>
           <NavigationDropDown item="Submission"></NavigationDropDown>
@@ -54,6 +48,11 @@ const Navbar = () => {
       <Link to="/myProfile">
         <span style={linkStyle}>
           <NavigationDropDown item="Profile"></NavigationDropDown>
+        </span>
+      </Link>
+      <Link to="/about">
+        <span style={linkStyle}>
+          <NavigationDropDown item="About"></NavigationDropDown>
         </span>
       </Link>
       {user?.uid && (
