@@ -5,6 +5,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import { LiaAngleDoubleRightSolid } from "react-icons/lia";
 import { toast } from "sonner";
+import NavHomeLogo from "../../Components/NavHomeLogo";
+import thirty from "../../Assets/Images/30year.jpg";
+import cseduLogo from "../../Assets/Images/cseduLogo.png";
 
 const Login = () => {
   const [loginError, setLoginError] = useState("");
@@ -41,9 +44,14 @@ const Login = () => {
       style={{ backgroundColor: "#e5e5e5", height: "100vh" }}
       className="md:px-24 md:py-16 p-6 "
     >
-      <div className=" pb-6 mx-auto w-3/5 " style={{ backgroundColor: "#fff" }}>
+      <div className=" pb-6 mx-auto lg:w-3/5 md:w-4/5" style={{ backgroundColor: "#fff" }}>
+        <div className="flex justify-center">
+          <NavHomeLogo Thirty={thirty} cseduLogo={cseduLogo}></NavHomeLogo>
+        </div>
+        <div className=" top-0 right-0 w-full h-0.5 bg-gray-300"></div>
+
         <div style={{ backgroundColor: "#00629B" }} className="p-4">
-          <h1 className="text-md text-white  font-bold">
+          <h1 className="text-sm md:text-md text-white  font-bold">
             CSEDU Thesis Repository - Sign in to access the secure content
           </h1>
         </div>
