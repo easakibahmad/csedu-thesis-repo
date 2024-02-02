@@ -16,13 +16,11 @@ const Main = () => {
         <div className="lg:hidden">
           {checkCurrentLocation || <PNavDrawer></PNavDrawer>}
         </div>
-        <div className="hidden lg:flex">
-          {checkCurrentLocation || (
-            <div className="hidden md:flex">
-              <NavigationBar></NavigationBar>
-            </div>
-          )}
-        </div>
+        {checkCurrentLocation || (
+          <div className="hidden lg:flex">
+            <NavigationBar></NavigationBar>
+          </div>
+        )}
       </div>
       <PageWrapper>
         {checkCurrentLocation || (
