@@ -44,28 +44,28 @@ const PublicationsItem = ({ option }) => {
           |
           <Link
             to="/myProfile"
-            className="underline  "
+            className="underline hidden md:flex "
             style={{ fontSize: "12px" }}
           >
             {memberOne}
           </Link>
-          |
+          <span className=" hidden md:flex ">|</span>
           <Link
             to="/myProfile"
-            className="underline "
+            className="underline hidden md:flex"
             style={{ fontSize: "12px" }}
           >
             {memberTwo}
           </Link>
-          |
+          <span className=" hidden md:flex ">|</span>
           <Link
             to="/Publications"
-            className="underline "
+            className="underline hidden md:flex"
             style={{ fontSize: "12px" }}
           >
             {category}
           </Link>
-          |
+          <span className=" hidden md:flex ">|</span>
           <p className="text-sm" style={{ fontSize: "12px" }}>
             {publicationYear}
           </p>

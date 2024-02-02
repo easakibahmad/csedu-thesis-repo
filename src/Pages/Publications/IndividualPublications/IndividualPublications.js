@@ -56,7 +56,7 @@ const IndividualPublications = () => {
     <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
       <div className="mb-16 mt-6 grid md:grid-cols-2 grid-cols-1">
         <div>
-          <div className="p-8 my-auto">
+          <div className="md:p-8 p-2 my-auto">
             <div className="text-sm items-center  flex justify-start gap-2 mb-3">
               <p className="bg-blue-200 p-1 border rounded">Article</p>
               <p className="border p-1 rounded">
