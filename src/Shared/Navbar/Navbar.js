@@ -33,24 +33,24 @@ const Navbar = () => {
   };
   const menuItems = (
     <React.Fragment>
-      <Link to="/publications">
+      <Link to="#">
         <span style={linkStyle}>
           <NavigationDropDown item="Publications"></NavigationDropDown>
         </span>
       </Link>
 
-      <Link to="/submission">
+      <Link>
         <span style={linkStyle}>
           <NavigationDropDown item="Submission"></NavigationDropDown>
         </span>
       </Link>
 
-      <Link to="/myProfile">
+      <Link>
         <span style={linkStyle}>
           <NavigationDropDown item="Profile"></NavigationDropDown>
         </span>
       </Link>
-      <Link to="/about">
+      <Link>
         <span style={linkStyle}>
           <NavigationDropDown item="About"></NavigationDropDown>
         </span>
@@ -67,53 +67,10 @@ const Navbar = () => {
   return (
     <div className="navbar grid cols-1">
       <div className="mb-4">
-        <div className="dropdown">
-          <label
-            // htmlFor="my-drawer"
-            tabIndex={0}
-            className="btn btn-ghost lg:hidden"
-          >
-            <span className="text-xl">
-              <HiMenu></HiMenu>
-            </span>
-          </label>
-
-          <ul
-            tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            {menuItems}
-            {!user?.uid && (
-              <Link to="/login">
-                <NavigationDropDown item="Login"></NavigationDropDown>
-              </Link>
-            )}
-          </ul>
-        </div>
         <div className="flex items-center justify-between w-full">
-          {/* <Link to="/" className="flex items-center gap-2">
-            <div
-              style={{ color: "#107fa8" }}
-              className="grid cols-1 md:text-2xl border-r-2 pr-2  text-md font-medium items-center"
-            >
-              <div className="flex gap-1 items-center ">
-                <img src={cseduLogo} alt="cseduLogo" className="w-10 h-10" />
-                <span className="font-bold text-3xl">CSEDU</span>
-              </div>
-              <p
-                className="hidden md:block italic ml-5 -mt-2"
-                style={{ fontSize: "13px" }}
-              >
-                Thesis Repository
-              </p>
-            </div>
-            <div>
-              <img className="h-20 w-30 " src={Thirty} alt="Thirty Years!" />
-            </div>
-          </Link> */}
           <NavHomeLogo Thirty={Thirty} cseduLogo={cseduLogo}></NavHomeLogo>
           <div>
-            <p className="text-sky-800 text-md font-bold">
+            <p className="text-sky-800 text-sm font-bold">
               CSEDU Academic Dissertations: A Repository of Ideas
             </p>
           </div>
@@ -149,28 +106,26 @@ const Navbar = () => {
         className="hidden lg:flex lg:justify-between"
         style={{ fontSize: "20px" }}
       >
-        <div className=" px-1 grid grid-cols-6 gap-6 w-full">{menuItems}</div>
+        <div className="grid grid-cols-6 gap-6 w-full">{menuItems}</div>
         <div style={{ width: "140px" }}>
-          {!user?.uid && (
-            <Link
-              className="flex justify-center items-center"
-              style={{
-                background: "#069",
-                height: "40px",
-                fontSize: "18px",
-                padding: "10px 25px",
-                borderRadius: "30px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#fff",
-                fontWeight: "bold",
-              }}
-              to="/signup"
-            >
-              <span className="hover:text-black">JOIN US</span>
-            </Link>
-          )}
+          <Link
+            className="flex justify-center items-center"
+            style={{
+              background: "#069",
+              height: "40px",
+              fontSize: "13px",
+              padding: "10px 25px",
+              borderRadius: "30px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#fff",
+              fontWeight: "bold",
+            }}
+            to="/signup"
+          >
+            <span className="hover:text-black">JOIN US</span>
+          </Link>
         </div>
       </div>
     </div>

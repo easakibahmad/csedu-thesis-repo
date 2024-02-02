@@ -55,7 +55,7 @@ const MidSectionThree = () =>
 ];
 
   return (
-    <div className="grid grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 md:gap-6 gap-16">
       {thesisRepositoryData.map((item)=> <CardE title={item.title} image={item.image} text={item.text}></CardE>)}
     </div>
   );

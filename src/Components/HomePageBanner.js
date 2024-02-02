@@ -30,22 +30,21 @@ const HomePageBanner = () => {
     <div className="module" style={cardStyle}>
       <div className="top">
         <div style={headingStyle}>
-          <h2 className="text-2xl">Fostering Academic Excellence at CSEDU</h2>
-          <p>
+          <h2 className="md:text-3xl text-md mb-2">
+            Fostering Academic Excellence at CSEDU
+          </h2>
+          <p className="text-sm md:text-md mb-2">
             CSEDU Thesis Repository is dedicated to advancing academic
-            excellence within the Computer Science and Engineering domain. Our
-            commitment is reflected through impactful publications, conferences,
-            adherence to technology standards, and engaging in professional and
-            educational activities. We envision a sustainable future where our
-            repository serves as a beacon of knowledge, inspiring a global
-            community of researchers, students, and professionals.
+            excellence within the Computer Science and Engineering domain.{" "}
           </p>
           <Button
             style={{ backgroundColor: "#E87722" }}
             className="  border-none mt-2 rounded-full"
           >
             <Link to="/about">
-              <span className="hover:text-black text-white font-bold">Learn More</span>
+              <span className="hover:text-black text-white font-bold">
+                Learn More
+              </span>
             </Link>
           </Button>
         </div>

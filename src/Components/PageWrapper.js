@@ -1,7 +1,7 @@
 import React from "react";
 
 const PageWrapper = ({ children }) => {
-  return <div className="mx-12">{children}</div>;
+  return <div >{children}</div>;
 };
 
 export default PageWrapper;

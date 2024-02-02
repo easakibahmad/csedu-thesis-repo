@@ -20,13 +20,13 @@ const CardA = () => {
         </p>
         <Link
           to="#"
-          className="flex gap-1 text-blue-500 items-center link link-hover"
+          className="text-sm flex gap-1 text-blue-500 items-center link link-hover"
         >
           <FiChevronRight /> Register now
         </Link>
         <Link
           to="#"
-          className="flex gap-1 text-blue-500 items-center link link-hover"
+          className="text-sm flex gap-1 text-blue-500 items-center link link-hover"
         >
           <FiChevronRight /> Search all IEEE conferences
         </Link>

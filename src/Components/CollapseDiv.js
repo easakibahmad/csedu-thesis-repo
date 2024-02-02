@@ -9,7 +9,7 @@ const items = [
   {
     key: "1",
     label: (
-      <p className="text-white flex items-center gap-4 text-xl">
+      <p className="text-white flex items-center gap-4 md:text-xl text-md">
         <HiChevronDown></HiChevronDown> Welcome to CSEDU Thesis Repository
       </p>
     ),
@@ -26,7 +26,7 @@ const items = [
   {
     key: "2",
     label: (
-      <p className="text-white flex items-center gap-4 text-xl">
+      <p className="text-white flex items-center gap-4 md:text-xl text-md">
         <HiChevronDown></HiChevronDown>Research Areas Covered
       </p>
     ),
@@ -42,7 +42,7 @@ const items = [
   {
     key: "3",
     label: (
-      <p className="text-white flex items-center gap-4 text-xl">
+      <p className="text-white flex items-center gap-4 md:text-xl text-md">
         <HiChevronDown></HiChevronDown>Contributing to the Repository
       </p>
     ),

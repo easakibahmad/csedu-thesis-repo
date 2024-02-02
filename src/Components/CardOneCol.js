@@ -9,7 +9,7 @@ const CardOneCol = () => {
       className="grid grid-cols-1 border-b-4 px-3"
       style={{ borderColor: "#ccc" }}
     >
-      <p className="py-2 text-xl font-bold">
+      <p className="py-2 text-sm md:text-xl font-bold">
         Recruit new CSEDU Thesis Repository members, earn rewards
       </p>
       <div className="h-4/5">
@@ -24,15 +24,15 @@ const CardOneCol = () => {
         </p>
         <Link
           to="#"
-          className="flex gap-1 text-blue-500 items-center link link-hover"
+          className="flex gap-1 text-sm text-blue-500 items-center link link-hover"
         >
           <FiChevronRight /> Learn more
         </Link>
         <Link
           to="#"
-          className="flex gap-1 text-blue-500 items-center link link-hover"
+          className="flex gap-1 text-sm text-blue-500 items-center link link-hover"
         >
-          <FiChevronRight /> Submit a referral 
+          <FiChevronRight /> Submit a referral
         </Link>
       </div>
     </div>

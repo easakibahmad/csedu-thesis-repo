@@ -14,7 +14,7 @@ const HomeMidSection = () => {
   };
   return (
     <div className="my-6 py-10 px-6">
-      <h1 className="text-2xl " style={linkStyle}>
+      <h1 className="text-md md:text-2xl " style={linkStyle}>
         <span
           style={{
             borderBottom: "7.5px solid #00629B",
@@ -25,7 +25,7 @@ const HomeMidSection = () => {
         </span>{" "}
         From CSEDU Thesis Repository
       </h1>
-      <p className="my-8 text-xl">
+      <p className="my-8 md:text-xl">
         CSEDU and our members around the world support the global pursuit of
         peace.
       </p>

@@ -9,7 +9,7 @@ const CardB = () => {
       className="grid grid-cols-1 border-b-4 px-3"
       style={{ borderColor: "#ccc" }}
     >
-      <p className="py-2 text-xl font-bold">
+      <p className="py-2 text-sm md:text-xl font-bold">
         Multiple Society Discount Program
       </p>
       <div className="h-4/5">
@@ -24,7 +24,7 @@ const CardB = () => {
         </p>
         <Link
           to="#"
-          className="flex gap-1 text-blue-500 items-center link link-hover"
+          className="text-sm flex gap-1 text-blue-500 items-center link link-hover"
         >
           <FiChevronRight /> Learn more
         </Link>

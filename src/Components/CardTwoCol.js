@@ -21,7 +21,7 @@ const CardTwoCol= () => {
         </p>
         <Link
           to="#"
-          className="flex gap-1 text-blue-500 items-center link link-hover"
+          className="text-sm flex gap-1 text-blue-500 items-center link link-hover"
         >
           <FiChevronRight /> Learn more
         </Link>
