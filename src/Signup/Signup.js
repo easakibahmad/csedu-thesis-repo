@@ -9,7 +9,6 @@ import { useState } from "react";
 import NavHomeLogo from "../Components/NavHomeLogo";
 import { LiaAngleDoubleRightSolid } from "react-icons/lia";
 import "./Signup.css"
-import StyledInput from "../Components/StyledInput";
 import { toast } from "sonner";
 
 const Signup = () => {
@@ -69,21 +68,24 @@ const Signup = () => {
 
   return (
     <div
-      style={{ backgroundColor: "#e5e5e5", height: "100vh" }}
-      className="md:px-24 md:py-16 p-6 "
+      // style={{ backgroundColor: "#00629B", height:"100vh" }}
+      className="md:px-24 md:pt-16 p-6 mb-10"
     >
-      <div className=" p-6 mx-auto" style={{ backgroundColor: "#fff" }}>
+      <div
+        className="shadow-xl  p-6 mx-auto"
+        style={{ backgroundColor: "#fff" }}
+      >
         <div>
           <NavHomeLogo Thirty={thirty} cseduLogo={cseduLogo}></NavHomeLogo>
           <div className=" mt-4 top-0 right-0 w-full h-0.5 bg-gray-300"></div>
         </div>
-        <div className=" mt-6 flex justify-between items-center">
+        <div className="mt-6 grid lg:grid-cols-2  items-center">
           <div>
             <p style={{ color: "#00629B" }} className="text-md font-bold">
               Create a CSEDU Thesis Repository Account
             </p>
           </div>
-          <div>
+          <div className="lg:ml-auto">
             <p
               className="mt-3 items-center text-center flex gap-2 text-sm"
               style={{ fontSize: "13px" }}
