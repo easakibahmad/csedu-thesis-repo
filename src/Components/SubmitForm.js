@@ -42,7 +42,7 @@ const publicationYearOptions = [
 ];
 const SubmitForm = () => {
   return (
-    <div className="container w-cover my-8">
+    <div className="container w-cover md:my-8">
       <div className="text">Submit Your Repository</div>
       <form action="#">
         <div className="form-row">
@@ -80,7 +80,8 @@ const SubmitForm = () => {
             pValue="Select category"
           ></SelectDropdown>
         </div>
-        <div className="form-row gap-3">
+              <div className="form-row gap-3">
+                  
           <SelectDropdown
             options={supervisorsOptions}
             pValue="Select supervisor"

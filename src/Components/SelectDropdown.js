@@ -7,7 +7,8 @@ const handleChange = (value) => {
 const SelectDropdown = ({ options, pValue }) => (
   <Select
     style={{
-      width: "100%",
+            width: "100%",
+            margin: "10px 0",
     }}
     placeholder={pValue}
     defaultValue={[options[0]]}
