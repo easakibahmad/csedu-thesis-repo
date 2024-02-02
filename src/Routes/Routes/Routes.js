@@ -4,7 +4,6 @@ import About from "../../Pages/About/About";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Signup from "../../Signup/Signup";
-import Submission from "../../Pages/Submission/Submission";
 import Publications from "../../Pages/Publications/Publications";
 import IndividualPublications from "../../Pages/Publications/IndividualPublications/IndividualPublications";
 import PagesOutlet from "../../Layout/PagesOutlet";
@@ -12,6 +11,8 @@ import SortedPage from "../../Pages/SortedPage/SortedPage";
 import Success from "../../Pages/Success/Success";
 import MyProfile from "../../Pages/MyProfile/MyProfile";
 import Search from "../../Pages/Search/Search";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import SubmitForm from "../../Components/SubmitForm";
 
 const router = createBrowserRouter([
   {
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
       // },
       {
         path: "/submission",
-        element: <Submission></Submission>,
+        element: <SubmitForm></SubmitForm>,
       },
       {
         path: "/publications",
@@ -50,10 +51,7 @@ const router = createBrowserRouter([
             `https://csedut-hesis-repository-server.vercel.app/thesisFiles/${params.id}`
           ),
       },
-      {
-        path: "/myProfile",
-        element: <MyProfile></MyProfile>,
-      },
+
       {
         path: "/pages/:year",
         element: <SortedPage></SortedPage>,
@@ -71,6 +69,10 @@ const router = createBrowserRouter([
           ),
       },
     ],
+  },
+  {
+    path: "/myProfile",
+    element: <MyProfile></MyProfile>,
   },
   {
     path: "/signup",

@@ -6,11 +6,11 @@ import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import { useState } from "react";
-import { toast } from "react-hot-toast";
 import NavHomeLogo from "../Components/NavHomeLogo";
 import { LiaAngleDoubleRightSolid } from "react-icons/lia";
 import "./Signup.css"
 import StyledInput from "../Components/StyledInput";
+import { toast } from "sonner";
 
 const Signup = () => {
   const {
@@ -32,7 +32,7 @@ const Signup = () => {
     createUser(data.email, data.password)
       .then((res) => {
         console.log(res.user);
-        toast.success("User created!!");
+        toast.success("Account created successfully...");
         const userDataFromForm = {
           email: data.email,
           registrationNo: data.registration,
@@ -59,7 +59,8 @@ const Signup = () => {
           });
       })
       .catch((error) => {
-        console.log(error.message);
+        console.log( error.message );
+        toast.error("Account creation failed...")
         setSignupError(error.message);
       });
   };

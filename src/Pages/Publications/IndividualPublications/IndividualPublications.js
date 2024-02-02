@@ -6,6 +6,7 @@ import { useLoaderData } from "react-router-dom";
 import { BsArrowsFullscreen } from "react-icons/bs";
 
 const IndividualPublications = () => {
+
   const individualData = useLoaderData();
   console.log(individualData);
   const {

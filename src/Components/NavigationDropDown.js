@@ -16,11 +16,21 @@ const NavigationDropDown = ({ item }) => {
       return "/about";
     } else if (item === "Login") {
       return "/login";
-    } else if (item === "Profile") {
+    }
+    else if ( item === "Profile" )
+    {
       return "/myProfile";
-    } else if (item === "Signout") {
+    }
+    else if ( item === "Signout" )
+    {
       return "/signout";
-    } else {
+    }
+    else if ( item === "Profile" )
+    {
+      return "/user-profile";
+    }
+    else
+    {
       return "/";
     }
   };
@@ -44,7 +54,7 @@ const NavigationDropDown = ({ item }) => {
     <Dropdown
       overlay={
         <div className="">
-          <div className="bg-blue-500 border-gray-300 grid grid-cols-2">
+          <div className="bg-blue-500 max-w-[500px] font-sm border-gray-300 grid grid-cols-2">
             <div className="">
               <Link
                 to={getItemLink()}
@@ -112,11 +122,11 @@ const NavigationDropDown = ({ item }) => {
       }
       onVisibleChange={handleDropdownVisibleChange}
     >
-      <a href="#abc" onClick={(e) => e.preventDefault()}>
+      <p onClick={(e) => e.preventDefault()}>
         <Space className={`${dropdownActive ? " text-blue-500" : ""}`}>
           <Link to={getItemLink()}>{item}</Link>
         </Space>
-      </a>
+      </p>
     </Dropdown>
   );
 };

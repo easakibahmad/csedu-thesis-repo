@@ -2,7 +2,6 @@ import React, { useMemo } from "react";
 import { Layout, theme } from "antd";
 import PublicationsItem from "./PublicationsItem/PublicationsItem";
 import { useQuery } from "@tanstack/react-query";
-import Loading from "../../Shared/Loading/Loading";
 import PublicationSider from "../../Components/PublicationSider";
 import LoadingSkeleton from "../../Components/LoadingSkeleton";
 

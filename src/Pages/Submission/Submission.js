@@ -1,11 +1,11 @@
-// import React, { useContext } from "react";
 import { useState } from "react";
-// import { AuthContext } from "../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import "../../Styles/Form.css"
+
+
 
 const Submission = () => {
-  // const { user } = useContext(AuthContext);
-  // const { displayName, email } = user;
+
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formTitleSubmitted, setFormTitleSubmitted] = useState(false);
   const [formYearSubmitted, setFormYearSubmitted] = useState(false);
@@ -112,7 +112,8 @@ const Submission = () => {
   };
 
   return (
-    <div>
+    <div>    
+
       <div className="h-14 bg-black text-center md:text-4xl text-2xl font-medium grid items-center text-white">
         Submit Project File
       </div>
@@ -137,14 +138,14 @@ const Submission = () => {
                       placeholder="Enter Name of Member 1"
                       value={formData.memberOne}
                       onChange={handleInputChange}
-                      className={`input input-bordered ${
+                      className={`input input-bordered border-black focus:outline-none ${
                         memberOneError && formData.memberOne.trim() === ""
                           ? "input-error"
                           : ""
                       }`}
                     />
                     {memberOneError && formData.memberOne.trim() === "" && (
-                      <div className="error-message">
+                      <div className="error-message text-red-600 text-sm">
                         This field is required.
                       </div>
                     )}

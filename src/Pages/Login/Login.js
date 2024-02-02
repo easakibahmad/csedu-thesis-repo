@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import { LiaAngleDoubleRightSolid } from "react-icons/lia";
+import { toast } from "sonner";
 
 const Login = () => {
   const [loginError, setLoginError] = useState("");
@@ -24,11 +25,13 @@ const Login = () => {
     console.log(data);
     signIn(data.email, data.password)
       .then((res) => {
-        console.log(res.user);
+        console.log( res.user );
+        toast.success("Login successful!")
         navigate(from, { replace: true });
       })
       .catch((err) => {
-        console.log(err.message);
+        console.log( err.message );
+        toast.error("Login failed! try again");
         setLoginError(err.message);
       });
   };

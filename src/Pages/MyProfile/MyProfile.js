@@ -1,12 +1,22 @@
 import React from "react";
-import MySubmissions from "./MySubmissions/MySubmissions";
-import UserPicture from "./UserPicture/UserPicture";
+import SearchForm from "./SearchForm";
+import NavigationBar from "../../Components/NavigationBar";
+import Footer from "../../Shared/Footer/Footer";
+import ProfileMid from "./ProfileMid";
+import PContent from "./PContent";
 
 const MyProfile = () => {
   return (
-    <div className="pb-12">
-      <UserPicture></UserPicture>
-      <MySubmissions></MySubmissions>
+    <div style={{ height: "100vh" }}>
+      <NavigationBar></NavigationBar>
+      <div className="flex justify-center search-div items-center h-48 my-auto">
+        <SearchForm></SearchForm>
+      </div>
+      <ProfileMid></ProfileMid>
+      <div className="md:w-3/5 mx-auto">
+        <PContent></PContent>
+      </div>
+      <Footer></Footer>
     </div>
   );
 };

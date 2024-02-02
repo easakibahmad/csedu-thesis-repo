@@ -25,8 +25,9 @@
     color: #6f81a5;
     font-size: 16px;
     line-height: 1;
-    left: 16px;
 }
+
+
 
 .input-container input {
     height: 64px;
@@ -44,3 +45,4 @@
     border:1px solid black;
     
 }
+

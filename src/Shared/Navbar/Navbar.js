@@ -8,6 +8,7 @@ import { ImFacebook, ImTwitter, ImInstagram, ImLinkedin } from "react-icons/im";
 import Thirty from "../../Assets/Images/30year.jpg";
 import NavigationDropDown from "../../Components/NavigationDropDown";
 import NavHomeLogo from "../../Components/NavHomeLogo";
+import { toast } from "sonner";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -15,6 +16,7 @@ const Navbar = () => {
   const handleSignOut = () => {
     logOut()
       .then(() => {
+        toast.success("You are signed out successfully!");
         navigate("/");
       })
       .catch((err) => console.log(err));
@@ -43,24 +45,23 @@ const Navbar = () => {
         </span>
       </Link>
 
+      <Link to="/submission">
+        <span style={linkStyle}>
+          <NavigationDropDown item="Submission"></NavigationDropDown>
+        </span>
+      </Link>
+
+      <Link to="/myProfile">
+        <span style={linkStyle}>
+          <NavigationDropDown item="Profile"></NavigationDropDown>
+        </span>
+      </Link>
       {user?.uid && (
-        <>
-          <Link to="/submission">
-            <span style={linkStyle}>
-              <NavigationDropDown item="Submission"></NavigationDropDown>
-            </span>
-          </Link>
-          <Link onClick={handleSignOut} to="/">
-            <span style={linkStyle}>
-              <NavigationDropDown item="Signout"></NavigationDropDown>
-            </span>
-          </Link>
-          <Link to="/myProfile">
-            <span className="text-xl font-extrabold" style={linkStyle}>
-              <NavigationDropDown item="Profile"></NavigationDropDown>
-            </span>
-          </Link>
-        </>
+        <Link onClick={handleSignOut} to="/">
+          <span style={linkStyle}>
+            <NavigationDropDown item="Signout"></NavigationDropDown>
+          </span>
+        </Link>
       )}
     </React.Fragment>
   );
