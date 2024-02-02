@@ -50,7 +50,7 @@ const Publication = () => {
           <PublicationSider />
         </div>
       </Sider>
-      <Layout>
+      <Layout className="pl-6 lg:pl-0">
         <Content
           style={{
             margin: "24px 16px 0",
@@ -66,7 +66,7 @@ const Publication = () => {
           >
             <div>
               <div className="grid grid-cols-6">
-                <div className="col-span-6">
+                <div className="col-span-6 ">
                   {memoizedThesisFilesData.map((option) => (
                     <PublicationsItem
                       key={option._id}
