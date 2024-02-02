@@ -1,21 +1,23 @@
-import React from "react";
-import { Button, Card } from "antd";
-const { Meta } = Card;
-const PCard = () => (
-  <Card
-    hoverable
-    style={{
-      width: 240,
-    }}
-    cover={
-      <img
-        alt="example"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpZzaWIurz61-z7qn4pmhtXp-yAydWOmvP0A&usqp=CAU"
-      />
-    }
-  >
-    {" "}
-    <Button>Follow</Button>
-  </Card>
-);
+import { Button } from 'antd';
+import React from 'react';
+
+const PCard = () => {
+    return (
+      <div className="p-2  w-56 shadow-md ">
+        <div className="h-72 ">
+          <img
+            className="h-full w-full"
+            src="https://ssl.du.ac.bd/fontView/assets/faculty_image/image_1764.JPG"
+            alt="Mosaddek Sir"
+          />
+        </div>
+        <div>
+          <Button className="hover:text-blue-600 mt-4  border-blue-600">
+            Follow
+          </Button>
+        </div>
+      </div>
+    );
+};
+
 export default PCard;

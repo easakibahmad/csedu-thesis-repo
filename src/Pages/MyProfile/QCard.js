@@ -5,14 +5,16 @@ const QCard = () => {
   return (
     <div className="grid grid-cols-1 gap-6">
       <div>
-        <h1 className="font-bold text-xl">Angelina Curtis</h1>
+        <h1 className="font-bold text-sm md:text-xl">
+          Dr. Mosaddek Hossain Kamal
+        </h1>
         <p className="text-sm">
           Also published under:{" "}
-          <Link className="underline text-blue-500">L. Cheng</Link>
+          <Link className="underline text-sm text-blue-500">L. Cheng</Link>
         </p>
       </div>
       <div>
-        <h1 className="font-bold text-xl">Affiliation</h1>
+        <h1 className="font-bold text-sm md:text-xl">Affiliation</h1>
         <p className="text-sm">
           School of Artificial Intelligence <br />
           University of Chinese Academy of Sciences <br />
@@ -20,7 +22,7 @@ const QCard = () => {
         </p>
       </div>
       <div>
-        <h1 className="font-bold text-xl">Publication Topics</h1>
+        <h1 className="font-bold text-sm md:text-xl">Publication Topics</h1>
         <p className="text-sm">
           Neural Network,Interaction Forces,Adaptive Control,Autonomous
           Underwater Vehicles,Force Sensor,Inverse Reinforcement
@@ -30,11 +32,11 @@ const QCard = () => {
           Length,Caudal Fin,Central Pattern Generator,Classification
           Accuracy,Control Method,Force Control,Fuzzy Control,Hand
           Movements,Hand Position{" "}
-          <Link className="underline text-blue-500">Show More</Link>
+          <Link className="underline text-sm text-blue-500">Show More</Link>
         </p>
       </div>
       <div>
-        <h1 className="font-bold text-xl">Biography</h1>
+        <h1 className="font-bold text-sm md:text-xl">Biography</h1>
         <p className="text-sm">
           Long Cheng (Fellow, IEEE) received the B.S. degree (Hons.) in control
           engineering from Nankai University, Tianjin, China, in 2004, and the

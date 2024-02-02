@@ -10,7 +10,7 @@ const SearchForm = () => {
 
   return (
     <form className="search" action="" onSubmit={handleSubmit}>
-      <input type="search" placeholder="Search articles..." required />
+      <input type="text" placeholder="Search articles..." required />
       <button type="submit">Search</button>
     </form>
   );

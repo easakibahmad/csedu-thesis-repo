@@ -21,7 +21,7 @@ const MyProfile = () => {
         <SearchForm></SearchForm>
       </div>
       <ProfileMid></ProfileMid>
-      <div className="md:w-3/5 mx-auto">
+      <div className="md:w-4/5 mx-auto">
         <PContent></PContent>
       </div>
       <Footer></Footer>
